@@ -1,0 +1,13 @@
+## Ansible Hosts File for Home Lab ## 
+
+[CSR-Routers]
+CSR-1
+CSR-2
+CSR-3
+CSR-4
+
+[SWITCHES]
+2960
+3560 
+
+
