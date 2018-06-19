@@ -1,0 +1,80 @@
+---
+# Playbook to get system time and append it to backup files
+
+- hosts: localhost
+  gather_facts: false
+  
+  tasks:
+   - name: Get ansible date/time facts
+     setup:
+       filter: "ansible_date_time"
+       gather_subset: "!all"
+
+   - name: Store DTG as fact
+     set_fact:
+       DTG: "{{ ansible_date_time.date.time }}"
+
+- hosts: MALTA
+  connection: local
+  gather_facts: false
+
+  tasks:
+   - name: Show Run on Device
+     ios_command:
+     #timeout: 20 
+       commands:
+         - show run
+     register: config
+
+   - name: Save output to /etc/ansible/backups/malta
+     copy:
+       content: "{{config.stdout[0]}}"
+       dest: "/etc/ansible/backups/malta/1JuneV2/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
+
+- hosts: MALTA
+  connection: local
+  gather_facts: false
+
+  vars:
+    command_list:
+      - show etherchannel summary 
+      - show cdp neigh 
+    #  - show environment all
+      - show ip ospf int brief 
+      - show ip ospf neigh 
+      - show cdp neighbors detail
+    #  - show clock
+    #  - show users
+    #  - show boot
+    #  - show int status | inc connected
+    #  - show arp
+    #  - show ip interface brief | exc admin
+
+  tasks:
+   - name: Run the SHOW commands and save output 
+     ios_command:
+       commands: "{{ command_list }}"
+     register: showoutput
+
+   - name: "Put all the files together into one nice text file"
+     template: 
+       src: /etc/ansible/template.j2 
+       dest: "/etc/ansible/backups/{{ inventory_hostname }}.txt"
+
+
+
+- hosts: MALTA-Firewalls
+  connection: local
+  gather_facts: false
+
+  tasks:
+   - name: Show Run to get config 
+     asa_command:
+       commands:
+         - show run
+     register: fwconfig
+
+   - name: Save output to /etc/ansible/backups/malta
+     copy:
+       content: "{{fwconfig.stdout[0]}}"
+       dest: "/etc/ansible/backups/malta/1JuneV2/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
