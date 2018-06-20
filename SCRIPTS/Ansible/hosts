@@ -1,13 +1,18 @@
-## Ansible Hosts File for Home Lab ## 
+## Ansible Hosts File for Home Lab ##
+
+[all:vars]
+ansible_user=roger
+ansible_ssh_pass=cisco
+ansible_become=yes
+ansible_become_method=enable
+ansible_network_os=ios
+ansible_connection=network_cli
 
 [CSR-Routers]
-CSR-1
-CSR-2
-CSR-3
-CSR-4
+CSR-1 ansible_host=192.168.1.91
+CSR-2 ansible_host=192.168.1.154
+CSR-3 ansible_host=192.168.1.194
+
 
 [SWITCHES]
 2960
-
-
-
