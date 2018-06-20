@@ -1,9 +1,9 @@
 ---
-# Playbook to get system time and append it to backup files
+## Playbook to get system time and append it to backup files
 
 - hosts: localhost
   gather_facts: false
-  
+
   tasks:
    - name: Get ansible date/time facts
      setup:
@@ -12,36 +12,38 @@
 
    - name: Store DTG as fact
      set_fact:
-       DTG: "{{ ansible_date_time.date.time }}"
+       DTG: "{{ ansible_date_time.date }}"
 
-- hosts: MALTA
-  connection: local
+   - name: Create Directory {{hostvars.localhost.DTG}}
+     file:
+      path: ~/network-programmability/backups/{{hostvars.localhost.DTG}}
+      state: directory
+
+- hosts: CSR-Routers
   gather_facts: false
 
   tasks:
    - name: Show Run on Device
      ios_command:
-     #timeout: 20 
+     #timeout: 20
        commands:
          - show run
      register: config
 
-   - name: Save output to /etc/ansible/backups/malta
+   - name: Save output to ~/network-programmability/backups/
      copy:
        content: "{{config.stdout[0]}}"
-       dest: "/etc/ansible/backups/malta/1JuneV2/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
-- hosts: MALTA
-  connection: local
+- hosts: CSR-Routers
   gather_facts: false
-
   vars:
     command_list:
-      - show etherchannel summary 
-      - show cdp neigh 
+      - show etherchannel summary
+      - show cdp neigh
     #  - show environment all
-      - show ip ospf int brief 
-      - show ip ospf neigh 
+      - show ip ospf int brief
+      - show ip ospf neigh
       - show cdp neighbors detail
     #  - show clock
     #  - show users
@@ -51,30 +53,16 @@
     #  - show ip interface brief | exc admin
 
   tasks:
-   - name: Run the SHOW commands and save output 
+   - name: Run the SHOW commands and save output
      ios_command:
        commands: "{{ command_list }}"
      register: showoutput
 
    - name: "Put all the files together into one nice text file"
-     template: 
-       src: /etc/ansible/template.j2 
-       dest: "/etc/ansible/backups/{{ inventory_hostname }}.txt"
+     template:
+       src: template.j2
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-showoutput.txt"
 
 
 
-- hosts: MALTA-Firewalls
-  connection: local
-  gather_facts: false
 
-  tasks:
-   - name: Show Run to get config 
-     asa_command:
-       commands:
-         - show run
-     register: fwconfig
-
-   - name: Save output to /etc/ansible/backups/malta
-     copy:
-       content: "{{fwconfig.stdout[0]}}"
-       dest: "/etc/ansible/backups/malta/1JuneV2/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
