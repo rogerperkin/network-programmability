@@ -1,0 +1,11 @@
+---
+- hosts: CSR-Routers
+  gather_facts: False
+  tasks:
+
+    - name: Get facts
+      ios_facts:
+        gather_subset: all
+
+    - debug: msg="Serial Number is {{ ansible_net_serialnum }}"
+
