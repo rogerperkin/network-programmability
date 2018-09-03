@@ -13,6 +13,5 @@ CSR-1 ansible_host=192.168.1.210
 CSR-2 ansible_host=192.168.1.211
 CSR-3 ansible_host=192.168.1.212
 
-
 [SWITCHES]
 2960
