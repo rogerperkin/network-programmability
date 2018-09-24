@@ -1,4 +1,4 @@
-# Playbook to push Cisco conifgurations via file or template
+# Playbook to clear NTP config and apply new servers
 
 - hosts: CSR-Routers
   connection: network_cli
@@ -24,6 +24,7 @@
     ios_config: 
       lines: 
         - ntp server 4.5.6.7
+
 
         
 
