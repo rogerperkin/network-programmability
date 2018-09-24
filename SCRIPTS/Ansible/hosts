@@ -1,4 +1,4 @@
-## Ansible Hosts File for Home Lab ##
+## Ansible Hosts File for Home Lab 
 
 [all:vars]
 ansible_user=roger
@@ -13,5 +13,8 @@ CSR-1 ansible_host=192.168.1.210
 CSR-2 ansible_host=192.168.1.211
 CSR-3 ansible_host=192.168.1.212
 
+[CSR-VMW-Routers]
+CSR-11 ansible_host=192.168.106.166
+
 [SWITCHES]
-2960
+2960 ansible_host=192.168.1.250
