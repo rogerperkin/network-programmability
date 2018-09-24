@@ -1,0 +1,32 @@
+# Playbook to push Cisco conifgurations via file or template
+
+- hosts: CSR-Routers
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+  - name: Show Run on Device
+    ios_command:
+      commands:
+        - show run
+    register: config
+
+  - name: get current configured ntp servers
+    set_fact: _servers="{{ config.stdout[0] | regex_findall('^ntp server (\S+)', multiline=True) }}"
+
+  - name: remove old ntp servers
+    ios_config:
+      lines:
+        - "no ntp server {{ item }}"
+    with_items: "{{ _servers }}"
+
+  - name: configure new NTP server 
+    ios_config: 
+      lines: 
+        - ntp server 4.5.6.7
+
+        
+
+
+    
+
