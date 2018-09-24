@@ -20,15 +20,21 @@
       state: directory
 
 - hosts: CSR-Routers
+  connection: local
   gather_facts: false
 
   tasks:
    - name: Show Run on Device
      ios_command:
-     #timeout: 20
        commands:
          - show run
      register: config
+
+- hosts: CSR-Routers
+  connection: local
+  gather_facts: false
+
+  tasks:
 
    - name: Save output to ~/network-programmability/backups/
      copy:
@@ -39,18 +45,18 @@
   gather_facts: false
   vars:
     command_list:
-      - show etherchannel summary
-      - show cdp neigh
+    #  - show etherchannel summary
+    #  - show cdp neigh
     #  - show environment all
-      - show ip ospf int brief
-      - show ip ospf neigh
-      - show cdp neighbors detail
+    #  - show ip ospf int brief
+    #  - show ip ospf neigh
+    #  - show cdp neighbors detail
     #  - show clock
     #  - show users
     #  - show boot
     #  - show int status | inc connected
     #  - show arp
-    #  - show ip interface brief | exc admin
+      - show ip interface brief | exc admin
 
   tasks:
    - name: Run the SHOW commands and save output
