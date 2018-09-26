@@ -1,0 +1,49 @@
+---
+- hosts: 3560-SW1
+  gather_facts: false
+  connection: local
+
+  vars: 
+    my_list: []
+
+  tasks: 
+  - name: show interfaces 
+    ios_facts: 
+      gather_subset: "interfaces"
+
+  - name: get interface
+    set_fact: 
+      my_list: '{{my_list + [item]}}'
+    with_items: "{{ ansible_net_interfaces }}"
+
+  - debug:
+      var: my_list
+
+  - name: loop through 
+    with_items: " {{ my_list }}"
+    ios_command:
+      commands: show interface {{ item }} switchport | inc Operational Mode 
+      provider: "{{ cli }}"
+    register: output
+
+  - name: show output
+    with_indexed_items: "{{ my_list[0:32] }}"
+    debug: var=output.results[{{ item.0 }}].stdout
+
+
+  - block: 
+    - name: write config to interface 
+      with_indexed_items: " {{ my_list }} "
+      ios_config:
+        authorize: yes
+        lines: description STATUS is UP - "Configured by Ansible"
+        replace: line 
+        parents: interface {{ item.1 }} 
+        match: none
+      when: "'Operational Mode: static access' in output.results[item.0].stdout"
+
+  - name: SAVE CONFIG
+    ios_command:
+      authorize: yes
+      commands:
+        - write memory
