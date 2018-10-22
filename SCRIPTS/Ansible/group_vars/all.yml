@@ -1,0 +1,14 @@
+---
+
+global_ntp:
+  servers: 
+    - 192.168.1.200 
+    - 192.168.1.201 
+
+global_domain: 
+  domain_name: homelab.local
+
+  
+
+
+
