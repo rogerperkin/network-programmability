@@ -7,7 +7,7 @@
   tasks:
   - name: Push config file 
     ios_config:
-      src: "~/network-programmability/CONFIGS/switch.txt"
+      src: "deploy.j2"
 
   - name: save running to startup when modified
     ios_config:

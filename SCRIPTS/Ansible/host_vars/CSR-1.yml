@@ -1,0 +1,6 @@
+---
+hostname: 
+  name: CSR1
+
+interface: 
+  Gi2: 10.0.0.1 255.255.255.0 
