@@ -1,13 +1,15 @@
+# Use Netmiko to connect to Cisco using SSH 
+
 from netmiko import ConnectHandler
 
-iosv_l2 = {
+CSR = {
     'device_type': 'cisco_ios',
     'ip': '192.168.1.210',
     'username': 'roger',
     'password': 'cisco'
 }
 
-net_connect = ConnectHandler
+net_connect = ConnectHandler(**CSR)
 output = net_connect.send_command('show ip int brief')
 print (output)
 
