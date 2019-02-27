@@ -2,7 +2,6 @@
 ## Playbook to get system time and append it to backup files
 
 - hosts: localhost
-  gather_facts: false
 
   tasks:
    - name: Get ansible date/time facts
@@ -18,9 +17,9 @@
      file:
       path: ~/network-programmability/backups/{{hostvars.localhost.DTG}}
       state: directory
+  run_once: true
 
 - hosts: CSR-Routers
-  connection: local
   gather_facts: false
 
   tasks:
@@ -31,11 +30,9 @@
      register: config
 
 - hosts: CSR-Routers
-  connection: local
   gather_facts: false
 
   tasks:
-
    - name: Save output to ~/network-programmability/backups/
      copy:
        content: "{{config.stdout[0]}}"
