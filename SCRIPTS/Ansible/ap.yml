@@ -1,0 +1,12 @@
+---
+- hosts: WLC
+  gather_facts: false
+
+  tasks:
+  - name: Test Show Command 
+    aireos_command:
+      provider: "{{ legacy_credentials }}"
+      commands:
+        - show ap summary 
+
+      
