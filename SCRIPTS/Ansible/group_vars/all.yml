@@ -6,10 +6,10 @@ ansible_ssh_pass: "cisco"
 ansible_network_os: "ios"
 ansible_connection: "network_cli"
 
-# Classic Provider dictionary for use with aireos
+# Classic Provider Details for use with aireos
 
-legacy_creds:
-  host: "{{ inventory_hostname }}"
+legacy_credentials:
+  host: "{{ ansible_host }}"
   username: "roger"
   password: "Password$"
 
