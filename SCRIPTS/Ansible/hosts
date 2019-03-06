@@ -21,6 +21,6 @@ N9K-1 ansible_host=192.168.1.184
 BIG-IP-1-V ansible_host=192.168.1.180 
 
 [WLC]
-192.168.1.231
+WLC-1 ansible_host=192.168.1.231
 
 
