@@ -1,6 +1,6 @@
 # Playbook to clear NTP config and apply new servers
 
-- hosts: SWITCHES
+- hosts: CSR-Routers
   connection: network_cli
   gather_facts: false
 
