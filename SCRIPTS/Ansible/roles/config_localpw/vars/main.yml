@@ -1,0 +1,12 @@
+---
+routers:
+  - hostname: R1
+    user_type: admin
+    
+  - hostname: R2 
+    user_type: admin
+
+
+
+
+

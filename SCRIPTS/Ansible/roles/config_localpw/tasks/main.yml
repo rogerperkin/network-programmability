@@ -1,0 +1,4 @@
+--- 
+- name: Generate Configuration Files 
+  template: src=ios_local_pw.j2 dest="~/network-programmability/SCRIPTS/Ansible/configs/{{item.hostname}}.txt"
+  with_items: "{{ routers }}"
