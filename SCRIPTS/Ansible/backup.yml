@@ -19,17 +19,22 @@
       state: directory
   run_once: true
 
-
 - hosts: NXOS
   gather_facts: false
 
-  tasks: 
-    - name: BACKUP ALL NEXUS DEVICES 
-      nxos_config: 
-        backup: yes
-        backup_options:
-          filename:  "{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-          dir_path:  "~/network-programmability/backups/"
+  tasks:
+   - name: Backup NEXUS Devices
+     cli_command:
+       commands:
+         - show run | be version
+     register: config
+
+   - name: Save output to ~/projects/network-programmability/backups/
+     copy:
+       content: "{{config.stdout[0]}}"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+
+
 
 
 
