@@ -19,7 +19,7 @@
       state: directory
   run_once: true
 
-- hosts: NXOS
+- hosts: CSR-Routers
   gather_facts: false
 
   tasks:
