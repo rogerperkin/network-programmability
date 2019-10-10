@@ -23,10 +23,9 @@
   gather_facts: false
 
   tasks:
-   - name: Backup NEXUS Devices
+   - name: Backup CSR Devices
      cli_command:
-       commands:
-         - show run | be version
+       command: show run 
      register: config
 
    - name: Save output to ~/projects/network-programmability/backups/
