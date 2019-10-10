@@ -34,12 +34,12 @@
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
 - hosts: NXOS
+  gather_facts: false 
 
   tasks:
    - name: Backup NEXUS Devices
-     nxos_command:
-       commands: 
-         - show run 
+     cli_command:
+       command: show run 
      register: config
 
    - name: Save output to ~/projects/network-programmability/backups/
