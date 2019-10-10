@@ -1,0 +1,20 @@
+---
+## Playbook to configure some stuff 
+
+- hosts: CSR_Routers
+  gather_facts: false
+
+  tasks:
+  - name: Push config file 
+    ios_config:
+      src: "~/network-programmability/CONFIGS/test.txt"
+
+  - pause:
+  
+  - name: remove username steve
+    ios_user: 
+      name: steve
+      state: absent
+
+
+

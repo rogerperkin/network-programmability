@@ -2,6 +2,7 @@
 ## Playbook to get system time and append it to backup files
 
 - hosts: localhost
+  gather_facts: false
 
   tasks:
    - name: Get ansible date/time facts
@@ -38,14 +39,11 @@
 
   tasks:
    - name: Backup NEXUS Devices
-     cli_command:
-       command: show run 
-     register: config
-
-   - name: Save output to ~/projects/network-programmability/backups/
-     copy:
-       content: "{{config.stdout[0]}}"
-       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+     nxos_config:
+       backup: yes
+       backup_options:
+         filename: "{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+         dir_path: ~/network-programmability/backups
 
 
 
