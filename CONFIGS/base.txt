@@ -4,3 +4,16 @@ crypto key generate rsa modulus 2048
 line vty 0 4
  login local
  transport input ssh 
+
+ NEXUS 
+
+ username roger password cisco role network-admin
+ ip domain-name roger.local
+
+ no feature ssh 
+ ssh key rsa 2048 
+ feature ssh 
+
+
+ 
+

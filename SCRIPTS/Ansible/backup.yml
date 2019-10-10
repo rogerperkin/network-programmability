@@ -19,13 +19,13 @@
       state: directory
   run_once: true
 
-- hosts: CSR-Routers
+- hosts: CSR_Routers
   gather_facts: false
 
   tasks:
    - name: Backup CSR Devices
-     cli_command:
-       command: show run 
+     ios_command:
+       commands: show run 
      register: config
 
    - name: Save output to ~/projects/network-programmability/backups/
@@ -33,6 +33,19 @@
        content: "{{config.stdout[0]}}"
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
+- hosts: NXOS
+
+  tasks:
+   - name: Backup NEXUS Devices
+     nxos_command:
+       commands: 
+         - show run 
+     register: config
+
+   - name: Save output to ~/projects/network-programmability/backups/
+     copy:
+       content: "{{config.stdout[0]}}"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
 
 
