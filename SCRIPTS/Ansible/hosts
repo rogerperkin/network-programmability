@@ -1,9 +1,12 @@
 ## Ansible Hosts File for Lab 
 
 [CSR-Routers]
-CSR-1 ansible_host=192.168.1.210
-CSR-2 ansible_host=192.168.1.211
-CSR-3 ansible_host=192.168.1.212
+CSR-1 ansible_host=192.168.1.220
+CSR-2 ansible_host=192.168.1.221
+CSR-3 ansible_host=192.168.1.222
+
+[CSR-Routers:vars]
+ansible_python_interpreter=/usr/bin/python3
 
 [SWITCHES]
 2960 ansible_host=192.168.1.250
@@ -15,7 +18,8 @@ CSR-11 ansible_host=192.168.106.166
 2960 ansible_host=192.168.1.250
 
 [NXOS]
-N9K-1 ansible_host=192.168.1.184 
+N9K-1 ansible_host=192.168.1.210
+N9K-1 ansible_host=192.168.1.211
 
 [bigip]
 BIG-IP-1-V ansible_host=192.168.1.180 
