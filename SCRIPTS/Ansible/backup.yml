@@ -29,7 +29,7 @@
        commands: show run 
      register: config
 
-   - name: Save output to ~/projects/network-programmability/backups/
+   - name: Save output to ~/network-programmability/backups/
      copy:
        content: "{{config.stdout[0]}}"
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
@@ -38,12 +38,17 @@
   gather_facts: false 
 
   tasks:
-   - name: Backup NEXUS Devices
-     nxos_config:
-       backup: yes
-       backup_options:
-         filename: "{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-         dir_path: ~/network-programmability/backups
+
+   - name: Backup NEXUS with cli_command
+     cli_command:
+       command: show run | be ver
+     register: config 
+
+   - name: Save output to ~/network-programmability/backups/
+     copy:
+       content: "{{config.stdout}}"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+
 
 
 
