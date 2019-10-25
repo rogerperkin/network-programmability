@@ -1,0 +1,25 @@
+---
+
+  features:
+  - { feature: bgp }
+  - { feature: ospf }
+  - { feature: interface-vlan}
+  #- { feature: "nv overlay" }
+
+  default_vrf_interfaces:
+  - { interface: Ethernet1/1 }
+  - { interface: Ethernet1/2 }
+  - { interface: Loopback0 }
+
+  asn: 65001
+
+  address_families:
+  - { afi: ipv4, safi: unicast }
+  - { afi: l2vpn, safi: evpn }
+  
+  bgp_neighbors:
+  - { remote_as: 65001, neighbor: 3.3.3.3, update_source: Loopback0 }
+  - { remote_as: 65001, neighbor: 4.4.4.4, update_source: Loopback0 }
+
+  ipv4_unicast_neighbor:
+   - { remote_as: 65001, neighbor: 10.10.10.1 }
