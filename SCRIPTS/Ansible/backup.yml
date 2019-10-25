@@ -2,7 +2,6 @@
 ## Playbook to get system time and append it to backup files
 
 - hosts: localhost
-  gather_facts: false
 
   tasks:
    - name: Get ansible date/time facts
@@ -21,7 +20,6 @@
   run_once: true
 
 - hosts: CSR_Routers
-  gather_facts: false
 
   tasks:
    - name: Backup CSR Devices
