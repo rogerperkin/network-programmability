@@ -18,8 +18,6 @@ CSR-11 ansible_host=192.168.106.166
 [NXOS]
 N9K-1 ansible_host=192.168.1.210
 N9K-2 ansible_host=192.168.1.211
-[NXOS:vars]
-ansible_python_interpreter=/usr/bin/python3
 
 [bigip]
 BIG-IP-1-V ansible_host=192.168.1.180 

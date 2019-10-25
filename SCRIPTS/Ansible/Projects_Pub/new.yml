@@ -1,0 +1,38 @@
+---
+## Playbook to get system time and append it to backup files
+
+- hosts: localhost
+  gather_facts: false
+  vars_prompt:
+
+    - name: project
+      prompt: "Project Name ?"
+      private: no
+
+  tasks:
+   - debug:
+       msg: 'Creating new project {{ project }}'
+
+   - name: Create Directory {{project}}
+     file:
+      path: ~/Projects/{{project}}
+      state: directory
+
+   - debug:
+       msg: 'Create group_vars folder'
+
+   - name: Create Directory group_vars
+     file:
+      path: ~/Projects/{{project}}/group_vars
+      state: directory
+
+   - name: Create Directory host_vars
+     file:
+      path: ~/Projects/{{project}}/host_vars
+      state: directory
+
+   - name: Copy base files
+     copy:
+       src: ~/network-programmability/SCRIPTS/Ansible/ansible.cfg
+       dest: ~/Projects/{{project}}/
+  run_once: true
