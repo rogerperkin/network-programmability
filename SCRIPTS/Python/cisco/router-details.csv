@@ -1,0 +1,9 @@
+ROUTER,INTERFACE,DESCRIPTION
+CSR-1,Gi1/1,Primary Link
+CSR-1,GI1/3,Secondary Link 
+CSR-1,Gi1/3,Backup
+CSR-1,Gi1/4,Management
+CSR-2,Gi1/1,Primary Link
+CSR-2,GI1/3,Secondary Link 
+CSR-2,Gi1/3,Backup
+CSR-2,Gi1/4,Management
