@@ -1,0 +1,8 @@
+## Nornir Groups File 
+---
+CSR_Routers: 
+
+  data: 
+    ntp: 
+      servers: 
+        - 1.1.1.1
