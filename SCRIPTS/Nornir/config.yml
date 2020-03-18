@@ -1,0 +1,12 @@
+## Nornir Config File 
+---
+core:
+  num_workers: 100
+
+inventory:
+  plugin: "nornir.plugins.inventory.simple.SimpleInventory"
+
+  options: 
+    host_file: "~/network-programmability/SCRIPTS/Nornir/inventory/hosts.yml"
+    group_file: "~/network-programmability/SCRIPTS/Nornir/inventory/groups.yml"
+    defaults_file: "~/network-programmability/SCRIPTS/Nornir/inventory/defaults.yml"
