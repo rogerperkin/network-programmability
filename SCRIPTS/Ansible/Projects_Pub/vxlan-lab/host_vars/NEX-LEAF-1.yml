@@ -1,0 +1,11 @@
+--- 
+
+router_id: 3.3.3.3
+
+interfaces: 
+  - { name: Ethernet1/1, ipv4: 10.0.10.0/31 }
+  - { name: Ethernet1/2, ipv4: 10.0.10.8/31 }
+
+loopbacks: 
+  - { name: loopback0, ipv4: 3.3.3.3/32}
+
