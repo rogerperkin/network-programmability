@@ -7,3 +7,6 @@ These are live working playbooks from my Network Automation lab which you can cl
 ## VXLAN Lab:
 https://github.com/rogerperkin/network-programmability/tree/master/SCRIPTS/Ansible/Projects_Pub/vxlan-lab
 
+## Ansible Network Automation Course 
+https://www.rogerperkin.co.uk/network-automation/ansible/course/
+
