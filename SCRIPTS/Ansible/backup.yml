@@ -19,7 +19,7 @@
       state: directory
   run_once: true
 
-- hosts: CSR_Routers
+- hosts: CSR_Routers 
 
   tasks:
    - name: Backup CSR Devices
@@ -32,11 +32,52 @@
        content: "{{config.stdout[0]}}"
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
-- hosts: NXOS
-  gather_facts: false 
+- hosts: SWITCHES
 
   tasks:
+   - name: Backup Catalyst Switch 
 
+     ios_config:
+       backup: yes
+       backup_options:
+         filename: "{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+         dir_path: /home/roger/network-programmability/backups/{{hostvars.localhost.DTG}}
+       
+- hosts: CSR_Routers 
+
+  vars:
+    command_list:
+    # - show etherchannel summary 
+      - show cdp neigh 
+    # - sh switch stack-ports
+    # - sh switch 
+    # - show environment all
+    # - show ip ospf int brief 
+    # - show ip ospf neigh 
+      - show cdp neighbors detail
+      - show version 
+    # - show license usage 
+    # - show clock
+    # - show users
+    # - show boot
+    # - show int status | inc connected
+    # - show arp
+      - show ip interface brief | exc admin
+
+  tasks:
+   - name: Run the SHOW commands and save output 
+     ios_command:
+       commands: "{{ command_list }}"
+     register: showoutput
+
+   - name: "Put all the files together into one nice text file"
+     template: 
+       src: template.j2 
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-showoutput.txt"
+
+- hosts: NXOS
+
+  tasks:
    - name: Backup NEXUS with cli_command
      cli_command:
        command: show run | be ver
@@ -46,8 +87,5 @@
      copy:
        content: "{{config.stdout}}"
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-
-
-
 
 
