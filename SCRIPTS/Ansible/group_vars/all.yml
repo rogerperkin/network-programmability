@@ -1,5 +1,5 @@
 ---
-#Default Connectivity variables 
+# Default Login details 
 
 ansible_user: "roger"
 ansible_ssh_pass: "cisco"
