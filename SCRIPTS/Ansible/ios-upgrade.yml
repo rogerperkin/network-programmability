@@ -1,0 +1,129 @@
+---
+# Ansible Playbook to upgrade Cisco IOS 
+
+- name: Upgrade CISCO IOS 
+  hosts: SWITCHES
+
+  vars: 
+    upgrade_ios_version: 12.2(55)SE12
+
+  tasks:
+    - name: CHECK CURRENT VERSION
+      ios_facts:
+
+    - debug: 
+        msg: 
+        - "Current version is {{ ansible_net_version }}"
+        - "Upgrade image is 12.2.55-SE12"
+
+    - debug: 
+        msg: 
+        - "Image is not compliant and will be upgraded"
+
+      when: ansible_net_version != upgrade_ios_version
+
+## Create backup folder for today 
+
+- hosts: localhost
+
+  tasks:
+   - name: Get ansible date/time facts
+     setup:
+       filter: "ansible_date_time"
+       gather_subset: "!all"
+
+   - name: Store DTG as fact
+     set_fact:
+       DTG: "{{ ansible_date_time.date }}"
+
+   - name: Create Directory {{hostvars.localhost.DTG}}
+     file:
+      path: ~/network-programmability/backups/{{hostvars.localhost.DTG}}
+      state: directory
+  run_once: true
+
+## Backup Running Config 
+
+- hosts: SWITCHES 
+
+  tasks:
+   - name: Backup Running Config  
+     ios_command:
+       commands: show run  
+     register: config
+
+   - name: Save output to ~/network-programmability/backups/
+     copy:
+       content: "{{config.stdout[0]}}"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-config.txt"
+
+## SAVE the Running Config 
+
+   - name: Save running config 
+     ios_config:
+       save_when: always 
+
+## Copy software to target device 
+
+   - name: Copy Image // This could take up to 4 minutes
+     net_put: 
+       src: "~/network-programmability/images/c2960-lanbasek9-mz.122-55.SE12.bin"
+       dest: "flash:/c2960-lanbasek9-mz.122-55.SE12.bin"
+     vars: 
+       ansible_command_timeout: 600
+
+## Change the Boot Variable to the new image 
+
+   - name: Change Boot Variable to new image 
+     ios_config: 
+       commands: 
+         - "boot system flash:c2960-lanbasek9-mz.122-55.SE12.bin"
+       save_when: always 
+
+## Reload the device 
+
+   - name: Reload the Device 
+     cli_command: 
+       command: reload
+       prompt: 
+         - confirm
+       answer: 
+         - 'y'
+         
+## Wait for Reachability to the device 
+
+   - name: Wait for device to come back online
+     wait_for:
+       host: "{{ inventory_hostname }}"
+       port: 22
+       delay: 90
+     delegate_to: localhost
+
+## Check current image 
+
+   - name: Check Image Version      
+     ios_facts:
+
+   - debug: 
+       msg: 
+       - "Current version is {{ ansible_net_version }}"
+
+   - name: ASSERT THAT THE IOS VERSION IS CORRECT
+   
+     vars: 
+       upgrade_ios_version: 12.2(55)SE12
+
+     assert:
+       that:
+         - upgrade_ios_version == ansible_net_version
+   - debug: 
+       msg: 
+       - "Software Upgrade has been completed"
+
+
+
+
+
+       
+ 
+
