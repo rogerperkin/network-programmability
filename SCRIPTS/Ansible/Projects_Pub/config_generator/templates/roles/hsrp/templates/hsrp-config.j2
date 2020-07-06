@@ -1,0 +1,18 @@
+## Primary Interface / SVI / HSRP template 
+
+{% for interface in vlans %}
+interface vlan {{ interface['vlan'] }}
+ description {{ interface['description'] }}
+ hsrp version 2
+ ip address {{ interface ['subnet'] }}{{ interface ['primary_ip']}} 255.255.255.0
+ hsrp {{ interface['vlan']}}
+  priority 120
+  preempt
+  ip 10.{{ interface ['subnet']}}{{ interface ['gateway']}}
+  authentication key-string password hsrp{{ interface['vlan'] }}
+
+{% endfor %}
+
+
+
+

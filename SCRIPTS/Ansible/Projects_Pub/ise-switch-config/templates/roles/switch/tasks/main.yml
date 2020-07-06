@@ -1,0 +1,5 @@
+---
+- name: Generate Global Configuration File for Switch
+  template: src=ise-switch-config.j2 dest=~/network-programmability/SCRIPTS/Ansible/Projects_Pub/ise-switch-config/output/global.txt
+  with_items: "{{ switch }}"
+

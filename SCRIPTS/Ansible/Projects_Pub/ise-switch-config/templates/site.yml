@@ -1,0 +1,6 @@
+---
+- name: Generate ISE Switch Config 
+  hosts: localhost 
+
+  roles: 
+   - switch

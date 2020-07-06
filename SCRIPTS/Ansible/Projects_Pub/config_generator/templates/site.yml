@@ -1,0 +1,6 @@
+---
+- name: Generate Network Configuration Files 
+  hosts: localhost 
+
+  roles: 
+   - hsrp

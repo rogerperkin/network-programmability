@@ -1,0 +1,63 @@
+## Global Switch Config for ISE Deployment
+
+# Create test Radius User 
+
+username {{ item ['RADIUS-TEST-USER'] }} password 0 {{ item ['RADIUS-TEST-USER-PWD'] }}
+
+{% for item in switch %}
+aaa group server radius {{ item ['ISE-RADIUS-GROUP']}}
+ server name {{ item ['ISE-SERVER-1-Name']}}
+ server name {{ item ['ISE-SERVER-2-Name']}}
+
+ip radius source-interface {{ item ['radius-source-vlan']}}
+!
+aaa authentication dot1x default group {{ item ['ISE-RADIUS-GROUP']}}
+aaa authorization network default group {{ item ['ISE-RADIUS-GROUP']}}
+aaa authorization auth-proxy default group {{ item ['ISE-RADIUS-GROUP']}} 
+aaa accounting update periodic 5
+aaa accounting auth-proxy default start-stop group {{ item ['ISE-RADIUS-GROUP']}}
+!
+aaa server radius dynamic-author
+ client {{ item ['ISE-1-IP']}} server-key {{ item ['radius-key'] }}
+ client {{ item ['ISE-2-IP']}} server-key {{ item ['radius-key'] }}
+!
+aaa session-id common
+!
+authentication mac-move permit
+!
+epm access-control open
+!
+dot1x system-auth-control
+!
+dot1x critical eapol
+!
+ip device tracking
+!
+ip http server
+!
+ip http secure-server
+!
+ip http active-session-modules none
+ip http max-connections 48
+
+ip device tracking probe count {{ item ['ip-device-tracking-probe-count']}}
+ip device tracking probe delay {{ item ['ip-device-tracking-probe-delay']}}
+
+ip access-list standard {{ item ['ISE-SNMP-GROUP-NAME']}}
+ permit {{ item ['ISE-1-IP']}}
+ permit {{ item ['ISE-2-IP']}}
+ deny any
+
+radius server {{ item ['ISE-SERVER-1-Name']}}
+ address ipv4 {{ item ['ISE-1-IP']}} auth-port {{ item ['auth-port']}} acct-port {{ item ['acct-port']}} key {{ item ['radius-key'] }}
+!
+radius server {{ item ['ISE-SERVER-2-Name']}}
+ address ipv4 {{ item ['ISE-2-IP']}} auth-port {{ item ['auth-port']}} acct-port {{ item ['acct-port']}} key {{ item ['radius-key'] }}
+ 
+{% endfor %}
+
+
+
+
+
+

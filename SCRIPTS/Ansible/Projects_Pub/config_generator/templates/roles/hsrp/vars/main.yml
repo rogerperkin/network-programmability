@@ -1,0 +1,50 @@
+---
+vlans:
+  - vlan: 10 
+    subnet: 10.110.10
+    description: 'description'
+    primary_ip: .2
+    secondary_ip: .3
+    gateway: .1
+
+  - vlan: 20 
+    subnet: 10.120.10
+    description: 'description2'
+    primary_ip: .2
+    secondary_ip: .3
+    gateway: .1
+
+  - vlan: 30 
+    subnet: 10.130.10
+    description: 'description3'
+    primary_ip: .3
+    secondary_ip: .3
+    gateway: .1
+
+  - vlan: 40 
+    subnet: 10.140.10
+    description: 'description4'
+    primary_ip: .2
+    secondary_ip: .3
+    gateway: .1
+
+  - vlan: 50 
+    subnet: 10.150.10
+    description: 'description2'
+    primary_ip: .2
+    secondary_ip: .3
+    gateway: .1
+
+  - vlan: 60 
+    subnet: 10.160.10
+    description: 'description3'
+    primary_ip: .2
+    secondary_ip: .3
+    gateway: .1
+
+
+
+
+
+
+    

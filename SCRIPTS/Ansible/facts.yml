@@ -1,0 +1,19 @@
+---
+## Playbook to get device facts
+
+- hosts: CSR_Routers
+
+  tasks:
+   - name: Gather all legacy facts
+     ios_facts:
+       gather_subset: "!config"
+
+   - name: Print out result 
+     debug: var=ansible_net_model
+
+
+
+
+      
+        
+     

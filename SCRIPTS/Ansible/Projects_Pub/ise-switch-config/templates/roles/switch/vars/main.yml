@@ -1,0 +1,24 @@
+---
+switch:
+  - RADIUS-TEST-USER: RADIUS-TEST
+    
+    ISE-RADIUS-GROUP: ISE-RADIUS 
+    RADIUS-TEST-USER-PWD: Cisco12345
+    ISE-SERVER-1-Name: ISE-1
+    ISE-SERVER-2-Name: ISE-2
+    radius-source-vlan: Vlan1
+    ISE-1-IP: 10.0.0.1
+    ISE-2-IP: 10.0.0.2
+    ip-device-tracking-probe-count: 30
+    ip-device-tracking-probe-delay: 10
+    ISE-SNMP-GROUP-NAME: ISE-SNMP
+    auth-port: 1812
+    acct-port: 1813
+    radius-key: Cisco123
+
+
+
+
+
+
+
