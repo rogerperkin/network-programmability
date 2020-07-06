@@ -1,19 +1,24 @@
 ## Ansible Hosts File for Lab 
 
 [CSR_Routers]
-CSR-1 ansible_host=192.168.1.220
-CSR-2 ansible_host=192.168.1.221
-CSR-3 ansible_host=192.168.1.222
-CSR-4 ansible_host=192.168.1.223 
+R1 ansible_host=192.168.1.220
+R2 ansible_host=192.168.1.221
+R3 ansible_host=192.168.1.222
+R4 ansible_host=192.168.1.223
+R5 ansible_host=192.168.1.224
+R6 ansible_host=192.168.1.225 
+R7 ansible_host=192.168.1.226
+R8 ansible_host=192.168.1.227
+R9 ansible_host=192.168.1.228 
+R10 ansible_host=192.168.1.229
+R11 ansible_host=192.168.1.230 
+R12 ansible_host=192.168.1.231
+R13 ansible_host=192.168.1.232
+R14 ansible_host=192.168.1.233
+
 
 [SWITCHES]
-2960 ansible_host=192.168.1.250
-
-[CSR_VMW_Routers]
-CSR-11 ansible_host=192.168.106.166
-
-[SWITCHES]
-2960 ansible_host=192.168.1.250
+192.168.1.250
 
 [NXOS]
 N9K-1 ansible_host=192.168.1.210
@@ -24,5 +29,11 @@ BIG-IP-1-V ansible_host=192.168.1.180
 
 [WLC]
 WLC-1 ansible_host=192.168.1.231
+
+[ASAv]
+ASAv-1 ansible_host=192.168.1.245
+ASAv-2 ansible_host=192.168.1.246 
+
+
 
 
