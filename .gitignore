@@ -1,3 +1,12 @@
 /backups
 /SCRIPTS/Nornir/nornir.log 
+/envs
+/images
+nornir.log 
+.vscode/
+/SCRIPTS/Nornir/configs/
+SCRIPTS/Ansible/vault-pass.yml
+
+
+
 
