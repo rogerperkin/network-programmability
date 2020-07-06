@@ -1,0 +1,27 @@
+---
+# Ansible Playbook to upgrade Cisco IOS 
+
+- name: Upgrade CISCO IOS 
+  hosts: SWITCHES
+
+  vars: 
+    upgrade_ios_version: 12.2.55-SE12
+
+  tasks:
+    - name: CHECK CURRENT VERSION
+      ios_facts:
+
+    - debug: 
+        msg: 
+        - "Current version is {{ ansible_net_version }}"
+
+    - name: ASSERT THAT THE IOS VERSION IS CORRECT
+      vars: 
+        upgrade_ios_version: 12.2(55)SE12
+
+      assert:
+        that:
+          - upgrade_ios_version == ansible_net_version
+    - debug: 
+        msg: 
+        - "Software Upgrade has been completed"
