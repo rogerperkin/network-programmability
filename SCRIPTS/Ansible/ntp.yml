@@ -1,8 +1,6 @@
 # Playbook to clear NTP config and apply new servers
 
-- hosts: CSR-Routers
-  connection: network_cli
-  gather_facts: false
+- hosts: CSR_Routers
 
   tasks:
   - name: Show Run on Device
