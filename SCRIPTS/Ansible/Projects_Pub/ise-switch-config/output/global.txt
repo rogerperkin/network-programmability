@@ -1,0 +1,44 @@
+## Base Switch Config for ISE Deployment
+
+aaa group server radius ISE-RADIUS
+ server name ISE-1
+ server name ISE-2
+
+ip radius source-interface Vlan1
+!
+aaa authentication login default local
+aaa authentication dot1x default group ISE-RADIUS
+aaa authorization exec default local 
+aaa authorization network default group ISE-RADIUS
+aaa authorization auth-proxy default group ISE-RADIUS 
+aaa accounting update periodic 5
+aaa accounting auth-proxy default start-stop group ISE-RADIUS
+aaa accounting dot1x default start-stop group ISE-RADIUS
+!
+aaa server radius dynamic-author
+ client 10.0.0.1 server-key Cisco123
+ client 10.0.0.2 server-key Cisco123
+
+ip device tracking probe count 30
+ip device tracking probe delay 10
+
+dot1x system-auth-control
+dot1x critical eapol
+
+ip access-list standard ISE-SNMP
+ permit 10.0.0.1
+ permit 10.0.0.2
+ deny   any
+
+radius server ISE-1
+ address ipv4 10.0.0.1 auth-port 1812 acct-port 1813 key Cisco123
+!
+radius server ISE-2
+ address ipv4 10.0.0.2 auth-port 1812 acct-port 1813 key Cisco123
+ 
+
+
+
+
+
+

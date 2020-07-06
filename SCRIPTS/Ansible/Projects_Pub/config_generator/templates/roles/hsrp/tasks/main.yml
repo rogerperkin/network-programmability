@@ -1,0 +1,8 @@
+---
+- name: Generate Configuration File for Primary Switch 
+  template: src=hsrp-config.j2 dest=~/network-programmability/SCRIPTS/Ansible/Projects_Pub/config_generator/output/SW1.txt
+  with_items: "{{ vlans }}"
+
+- name: Generate Configuration File for Secondary Switch 
+  template: src=hsrp-config2.j2 dest=~/network-programmability/SCRIPTS/Ansible/Projects_Pub/config_generator/output/SW2.txt
+  with_items: "{{ vlans }}"

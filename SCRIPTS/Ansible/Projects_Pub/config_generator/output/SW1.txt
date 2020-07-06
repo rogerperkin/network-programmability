@@ -1,0 +1,523 @@
+## Primary Interface / SVI / HSRP template 
+
+vlan 10
+ name description
+vlan 20
+ name description2
+vlan 30
+ name description3
+vlan 300
+ name description4
+vlan 301
+ name description2
+vlan 302
+ name description3
+vlan 303
+ name description3
+vlan 304
+ name description3
+vlan 305
+ name description3
+vlan 306
+ name description3
+vlan 307
+ name description3
+vlan 308
+ name description3
+vlan 309
+ name description3
+vlan 310
+ name description3
+vlan 311
+ name description3
+vlan 312
+ name description3
+vlan 313
+ name description3
+vlan 314
+ name description3
+vlan 315
+ name description3
+vlan 316
+ name description3
+vlan 317
+ name description3
+vlan 318
+ name description3
+vlan 319
+ name description3
+vlan 320
+ name description3
+vlan 321
+ name description3
+vlan 322
+ name description3
+vlan 323
+ name description3
+vlan 324
+ name description3
+vlan 325
+ name description3
+vlan 326
+ name description3
+vlan 350
+ name description3
+vlan 351
+ name description3
+vlan 444
+ name description3
+vlan 500
+ name description3
+vlan 501
+ name description3
+vlan 606
+ name description3
+vlan 700
+ name description3
+vlan 801
+ name MPLS
+vlan 970
+ name Mgmt_Rack_G2
+vlan 971
+ name Mgmt_Rack_G5
+vlan 972
+ name Mgmt_Rack_G7
+vlan 973
+ name Mgmt_Rack_G10
+vlan 974
+ name Mgmt_Rack_H7
+vlan 975
+ name Mgmt_Rack_H10
+vlan 997
+ name 
+vlan 998
+ name Native_VLAN
+vlan 999
+ name Mgmt_VLAN
+
+interface vlan 10
+ description description
+ hsrp version 2
+ ip address .110.100.2 255.255.255.0
+ hsrp 10
+  preempt
+  ip 10..110.100.1
+  authentication key-string password hsrp10
+
+interface vlan 20
+ description description2
+ hsrp version 2
+ ip address 10.120.100.2 255.255.255.0
+ hsrp 20
+  preempt
+  ip 10.10.120.100.1
+  authentication key-string password hsrp20
+
+interface vlan 30
+ description description3
+ hsrp version 2
+ ip address 10.130.100.3 255.255.255.0
+ hsrp 30
+  preempt
+  ip 10.10.130.100.1
+  authentication key-string password hsrp30
+
+interface vlan 300
+ description description4
+ hsrp version 2
+ ip address 10.140.100.2 255.255.255.0
+ hsrp 300
+  preempt
+  ip 10.10.140.100.1
+  authentication key-string password hsrp300
+
+interface vlan 301
+ description description2
+ hsrp version 2
+ ip address 10.150.100.2 255.255.255.0
+ hsrp 301
+  preempt
+  ip 10.10.150.100.1
+  authentication key-string password hsrp301
+
+interface vlan 302
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 302
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp302
+
+interface vlan 303
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 303
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp303
+
+interface vlan 304
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 304
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp304
+
+interface vlan 305
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 305
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp305
+
+interface vlan 306
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 306
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp306
+
+interface vlan 307
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 307
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp307
+
+interface vlan 308
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 308
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp308
+
+interface vlan 309
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 309
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp309
+
+interface vlan 310
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 310
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp310
+
+interface vlan 311
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 311
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp311
+
+interface vlan 312
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 312
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp312
+
+interface vlan 313
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 313
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp313
+
+interface vlan 314
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 314
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp314
+
+interface vlan 315
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 315
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp315
+
+interface vlan 316
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 316
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp316
+
+interface vlan 317
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 317
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp317
+
+interface vlan 318
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 318
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp318
+
+interface vlan 319
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 319
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp319
+
+interface vlan 320
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 320
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp320
+
+interface vlan 321
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 321
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp321
+
+interface vlan 322
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 322
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp322
+
+interface vlan 323
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 323
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp323
+
+interface vlan 324
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 324
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp324
+
+interface vlan 325
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 325
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp325
+
+interface vlan 326
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 326
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp326
+
+interface vlan 350
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 350
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp350
+
+interface vlan 351
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 351
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp351
+
+interface vlan 444
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 444
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp444
+
+interface vlan 500
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 500
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp500
+
+interface vlan 501
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 501
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp501
+
+interface vlan 606
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 606
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp606
+
+interface vlan 700
+ description description3
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 700
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp700
+
+interface vlan 801
+ description MPLS
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 801
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp801
+
+interface vlan 970
+ description Mgmt_Rack_G2
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 970
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp970
+
+interface vlan 971
+ description Mgmt_Rack_G5
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 971
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp971
+
+interface vlan 972
+ description Mgmt_Rack_G7
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 972
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp972
+
+interface vlan 973
+ description Mgmt_Rack_G10
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 973
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp973
+
+interface vlan 974
+ description Mgmt_Rack_H7
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 974
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp974
+
+interface vlan 975
+ description Mgmt_Rack_H10
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 975
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp975
+
+interface vlan 997
+ description 
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 997
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp997
+
+interface vlan 998
+ description Native_VLAN
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 998
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp998
+
+interface vlan 999
+ description Mgmt_VLAN
+ hsrp version 2
+ ip address 10.160.100.2 255.255.255.0
+ hsrp 999
+  preempt
+  ip 10.10.160.100.1
+  authentication key-string password hsrp999
+
+
+
+

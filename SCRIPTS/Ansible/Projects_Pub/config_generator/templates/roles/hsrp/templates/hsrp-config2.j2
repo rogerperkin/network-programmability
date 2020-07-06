@@ -1,0 +1,16 @@
+## Secondary Interface / SVI / HSRP template 
+
+{% for interface in vlans %}
+interface vlan {{ interface['vlan'] }}
+ description {{ interface['description'] }}
+ hsrp version 2
+ ip address 10.{{ interface ['subnet'] }}.3 255.255.255.0
+ hsrp {{ interface['vlan']}}
+  ip 10.{{ interface ['subnet']}}{{ interface ['gateway']}}
+  authentication key-string password hsrp{{ interface['vlan'] }}
+
+{% endfor %}
+
+
+
+
