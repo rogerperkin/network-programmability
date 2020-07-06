@@ -1,7 +1,7 @@
 ## Nornir Config File 
 ---
 core:
-  num_workers: 100
+  num_workers: 1
 
 inventory:
   plugin: "nornir.plugins.inventory.simple.SimpleInventory"
