@@ -1,0 +1,16 @@
+## Netmiko Inventory ##
+---
+all: 
+  vars: 
+    username: roger 
+    password: cisco 
+  DC1: 
+    hosts: 
+      R1: 
+        hostname: 192.168.1.220 
+      R2: 
+        hostname: 192.168.1.221
+      R3: 
+        hostname: 192.168.1.222
+
+
