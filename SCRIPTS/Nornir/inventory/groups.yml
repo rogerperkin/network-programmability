@@ -7,6 +7,13 @@ CSR_Routers:
       servers: 
         - 1.1.1.1
 
+CSR:
+
+  data: 
+    ntp:
+      servers:
+        - 2.2.2.2
+
 ASAv:
   
   platform: cisco_asa
