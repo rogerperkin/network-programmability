@@ -6,15 +6,15 @@ from nornir.core.filter import F
 
 BACKUP_PATH = "~network-programmability/SCRIPTS/Nornir/configs"
 
+nr = InitNornir(config_file="./config.yml")
+
 def backup_config(task, path):
-    r = task.run(task=networking.napalm_get, getters=["config"])
+    r = task.run(task=napalm_get, getters=["config"])
     task.run(
         task=write_file,
         content=r.result["config"]["running"],
         filename=f"{path}/{task.host}.txt",
     )
-
-nr = InitNornir(config_file="./config.yml")
 
 devices = nr.filter(F(groups__contains="CSR"))
 
