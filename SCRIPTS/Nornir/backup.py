@@ -4,7 +4,7 @@ from nornir_utils.plugins.tasks.files import write_file
 from nornir import InitNornir
 from nornir.core.filter import F
 
-BACKUP_PATH = "/home/network-programmability/SCRIPTS/Nornir/backup-config"
+BACKUP_PATH = "backups/"
 
 def backup_config(task, path):
     r = task.run(task=napalm_get, getters=["config"])
