@@ -20,3 +20,15 @@ ASAv:
   username: roger
   password: cisco
 
+CSSHGO:
+
+  username: admin 
+  password: admin
+
+  data: 
+    ntp: 
+      servers:
+        - 3.3.3.3
+
+
+
