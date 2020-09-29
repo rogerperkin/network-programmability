@@ -1,10 +1,10 @@
+from nornir import InitNornir
 from nornir_napalm.plugins.tasks import napalm_get
 from nornir_utils.plugins.functions import print_result
 from nornir_utils.plugins.tasks.files import write_file
-from nornir import InitNornir
 from nornir.core.filter import F
 
-BACKUP_PATH = "backups/"
+BACKUP_PATH = "./backups"
 
 def backup_config(task, path):
     r = task.run(task=napalm_get, getters=["config"])
@@ -16,7 +16,7 @@ def backup_config(task, path):
 
 nr = InitNornir(config_file="./config.yml")
 
-devices = nr.filter(F(groups__contains="CSR"))
+devices = nr.filter(F(groups__contains="CSSHGO"))
 
 result = devices.run(
     name="Backup Device Configurations", path=BACKUP_PATH, task=backup_config
