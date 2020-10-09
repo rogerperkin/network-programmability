@@ -5,6 +5,7 @@
 nornir.log 
 .vscode/
 /SCRIPTS/Nornir/configs/
+/SCRIPTS/Nornir/backups/
 SCRIPTS/Ansible/vault-pass.yml
 
 
