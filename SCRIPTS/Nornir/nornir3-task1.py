@@ -7,9 +7,9 @@ from nornir.core.filter import F
 
 nr = InitNornir(config_file="config.yml")
 
-Router = nr.filter(F(groups__contains="CSR"))
+Router = nr.filter(F(groups__contains="CSSHGO"))
 
-result = Router.run(netmiko_send_command, command_string="show ip int brief")
+result = Router.run(netmiko_send_command, command_string="sh ip int brief")
 
 print_result(result)
 
