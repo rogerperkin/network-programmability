@@ -1,0 +1,93 @@
+#Initial Config for Controllers 
+#ISR4k - cannot do conf t - use config-session
+
+#vManage01
+
+system
+  host-name            vManage
+  system-ip            10.0.100.1
+  site-id              10
+  sp-organisation-name LAB-1
+  organisation-name    LAB-1
+  vbond                1.1.1.3
+
+vpn 0 
+ interface eth1
+ ip address 1.1.1.1/24
+ no shutdown 
+
+vpn 512 
+ interface eth0
+ ip address 192.168.1.199/24
+ no shutdown
+
+commit and-quit
+
+sh int | tab 
+
+# vBond
+
+system
+  host-name            vBond
+  system-ip            10.0.100.3
+  site-id              10
+  sp-organisation-name LAB-1
+  organisation-name    LAB-1
+  vbond                1.1.1.3 local
+
+vpn 0 
+ interface eth0
+ ip address 1.1.1.3
+ no shutdown 
+
+vpn 512 
+ interface eth1
+ ip address 192.168.1.221
+ no shutdown
+
+commit and-quit
+
+sh int | tab
+
+#vSmart 
+
+system
+  host-name            vManage
+  system-ip            10.0.100.2
+  site-id              10
+  sp-organisation-name LAB-1
+  organisation-name    LAB-1
+  vbond                1.1.1.3
+
+vpn 0 
+ interface eth0
+ ip address 1.1.1.2
+ no shutdown 
+
+vpn 512 
+ interface eth1
+ ip address 192.168.1.201
+ no shutdown
+
+commit and-quit
+
+sh int | tab
+
+#vEdge 
+
+system
+  host-name            v-Edge1
+  system-ip            10.0.100.4
+  site-id              10
+  sp-organisation-name LAB-1
+  organisation-name    LAB-1
+  vbond                1.1.1.3
+
+vpn 0 
+ interface Ge0/0
+ ip address 1.1.1.2
+ no shutdown 
+
+
+
+

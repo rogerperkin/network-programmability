@@ -1,0 +1,32 @@
+## Generate Certs on vManage 
+# enter vshell
+
+#Root Key
+openssl genrsa -out ROOTCA.key 2048 
+
+#RootCA
+openssl req -x509 -new -nodes -key ROOTCA.key -sha256 -days 2000 -subj "/C=UK/ST=Hampshire/L=Southampton/O=LAB-1/CN=roger.local" -out ROOTCA.pem
+
+#RootCA.key and ROOTCA.pem to generate vmanage.crt file
+openssl x509 -req -in vmanage_csr -CA ROOTCA.pem -CAkey ROOTCA.key -CAcreateserial -out vmanage.crt -days 2000 -sha256
+
+#Sign the vBond.csr with the ROOTCA.key and ROOTCA.pem to generate vbond.crt
+openssl x509 -req -in vbond.csr -CA ROOTCA.pem -CAkey ROOTCA.key -CAcreateserial -out vbond.crt -days 2000 -sha256
+
+#Sign the vSmart.csr with the ROOTCA.key and ROOTCA.pem to generate vsmare.crt 
+openssl x509 -req -in vsmart.csr -CA ROOTCA.pem -CAkey ROOTCA.key -CAcreateserial -out vsmart.crt -days 2000 -sha256
+
+#vEdge setup 
+
+SCP the ROOTCA.pem over to the vEdge 
+
+request root-cert-chain install vpn 512 scp://admin@192.168.1.199:/home/admin/ROOTCA.pem
+
+#Normal mode 
+request root-cert-chain install /home/admin/ROOTCA.pem
+request vedge-cloud activate chassis-number uuid token otp
+
+# Retrieve Chassis Number and token from vManage / Configuration / Devices
+
+# ISR router 
+show crypto pki certificates CISCO_IDEVID_SUDI
