@@ -1,0 +1,90 @@
+aaa new-model
+aaa authentication dot1x default group ISE-RADIUS
+aaa authorization dot1x default group ISE-RADIUS
+aaa accounting dot1x default start-stop group ISE-RADIUS 
+
+# Define Radius Server 
+
+aaa server radius dynamic-author
+  client {{ host['radius']['psn1_ip'] }} server-key {{ host['radius']['key'] }}
+  client {{host.radius.psn2_ip}} server-key {{host.radius.key}}
+
+#Global Radius commands
+
+radius server {{host.radius.psn1_name}}
+  address ipv4 {{host.radius.psn1_ip}} auth-port 1812 acct-port 1813
+  automate-tester username {{host.radius.test_user}} probe-on
+  key {{host.radius.key}}
+radius server {{host.radius.psn2_name}}
+  address ipv4 {{host.radius.psn2_ip}} auth-port 1812 acct-port 1813
+  automate-tester username {{host.radius.test_user}} probe-on
+  key {{host.radius.key}}
+
+#Servers access based on order here
+
+aaa group server radius ISE-RADIUS
+  server name {{host.radius.psn1_name}}
+  server name {{host.radius.psn2_name}}
+  deadtime {{host.radius.dead_time}}
+
+radius-server dead-criteria time 10 tries 3
+radius-server vsa send authentication
+radius-server vsa send accounting
+radius-server attribute 6 on-for-login-auth
+radius-server attribute 8 include-in-access-req
+radius-server attribute 25 access-request include
+radius-server attribute 31 mac format ietf upper-case
+radius-server attribute 31 send nas-port-detail mac-only
+
+#Send RADIUS traffic from management VLAN/IP
+ip radius source-interface vlan {{host.radius.source_vlan}}
+
+#LOCAL ACLs
+#Create the web auth redirect ACL
+ip access-list extended ACL_WebAuth
+    deny udp any any eq domain
+    deny udp any eq bootpc any eq bootps
+    permit tcp any any eq www
+#Create the low-impact mode ACL applied before RADIUS auth
+ip access-list extended ACL_Default
+    permit udp any any eq domain
+    permit udp any eq bootpc any eq bootps
+    permit tcp any host [ISE PSN 1 IP] eq 8443
+    permit tcp any host [ISE PSN 2 IP] eq 8443
+#Create ACL used when AAA is down
+ip access-list extended AAA-Down
+	permit ip any any
+
+#Global 802.1x commands
+dot1x system-auth-control
+dot1x critical eapol
+
+no access-session mac-move deny
+
+ip dhcp snooping 
+no ip dhcp snooping information open 
+
+ip dhcp snooping vlan {{host.radius.dhcp_snoop_vlan}}
+
+## Interface Config 
+
+interface GigabitEthernet{{host.radius.ise_port}}
+	switchport mode access
+	service-policy type control subscriber Dot1x-Default
+#Apply device tracking policy to port if not assigned to VLAN
+    	device-tracking attach-policy IP-Tracking
+	authentication periodic
+	authentication timer reauthenticate server
+	mab
+	access-session host-mode multi-auth
+	no access-session closed
+	dot1x pae authenticator
+	dot1x timeout tx-period 10
+	access-session port-control auto
+	no switchport port-security maximum 3
+	no switchport port-security violation restrict
+	no switchport port-security aging time 2
+	no switchport port-security aging type inactivity
+	no switchport port-security
+
+
