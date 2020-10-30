@@ -2,6 +2,7 @@
 #!/usr/bin/python
 
 from netmiko import ConnectHandler
+from termcolor import colored
 
 CSR = {
     'device_type': 'cisco_ios',
@@ -12,8 +13,9 @@ CSR = {
 
 net_connect = ConnectHandler(**CSR)
 output = net_connect.send_command('show ip int brief')
-print (output)
+print (colored(output, "white"))
 
 config_commands = ['interface loopback 2', 'ip address 2.2.2.2 255.255.255.0']
 output = net_connect.send_config_set(config_commands)
-print (output)
+print (colored(output, "red"))
+
