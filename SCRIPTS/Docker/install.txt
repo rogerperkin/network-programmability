@@ -1,0 +1,14 @@
+# Commands to get started with Docker 
+
+#Install Docker from Ubuntu Repo
+sudo apt install docker.io
+
+#Check Docker version 
+docker --version 
+
+#Check Status 
+sudo systemctl status docker 
+
+#Enable Docker 
+sudo systemctl enable --now docker 
+
