@@ -22,15 +22,20 @@
 - hosts: CSR_Routers 
 
   tasks:
-   - name: Show IP int brief 
+
+   - name: Gather facts (ios)
+     cisco.ios.ios_facts:
+     when: ansible_network_os == 'cisco.ios.ios'
+     
+   - name: Backup  
      ios_command:
-       commands: show ip int brief  
+       commands: show run  
      register: config
 
    - name: Save output to ~/network-programmability/backups/
      copy:
        content: "{{config.stdout[0]}}"
-       dest: "~/network-programmability/backups/ship.txt"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
 - hosts: SWITCHES
 
