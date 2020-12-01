@@ -1,0 +1,19 @@
+---
+- name: convert configured OSPFV2 resource to structured data
+  hosts: CSR_Routers 
+
+  gather_facts: false
+  tasks:
+
+  - name: Create inventory directory
+    file:
+      path: "{{ inventory_dir }}/host_vars/{{ inventory_hostname }}"
+      state: directory
+
+# Pull current OSPFv2 config 
+
+  - name: Use the OSPFV2 resource module to gather the current config
+    cisco.ios.ios_ospfv2:
+      state: gathered
+    register: ospfv2
+
