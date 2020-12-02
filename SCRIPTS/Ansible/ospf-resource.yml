@@ -1,13 +1,13 @@
 ---
-- name: convert configured OSPFV2 resource to structured data
+- name: Convert configured OSPFV2 resource to structured data
   hosts: CSR_Routers 
 
   gather_facts: false
   tasks:
 
-  - name: Create inventory directory
+  - name: Create inventory directory if not exist 
     file:
-      path: "{{ inventory_dir }}/output/{{ inventory_hostname }}"
+      path: "{{ inventory_dir }}/host_vars/{{ inventory_hostname }}"
       state: directory
 
 # Pull current OSPFv2 config 
@@ -21,5 +21,5 @@
   - name: Write the OSPFV2 configuration to a file
     copy:
       content: "{{ {'ospfv2': ospfv2['gathered']} | to_nice_yaml }}"
-      dest: "{{ inventory_dir }}/output/{{ inventory_hostname }}/ospfv2.yaml"
+      dest: "{{ inventory_dir }}/host_vars/{{ inventory_hostname }}/ospfv2.yaml"
 
