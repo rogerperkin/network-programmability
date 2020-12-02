@@ -20,6 +20,29 @@ line vty 0 4
  ssh key rsa 2048 
  feature ssh 
 
+ TACACS+ 
+
+ tacacs-server host 192.168.1.249 
+
+ Cisco 9300 - TACACS+ 
+
+ aaa group server tacacs+ {{name}}
+  server ip 
+  server ip 
+
+ip tacacs source-interface <interface>
+
+aaa authentication login default group <Name> local
+aaa authentication enable default group <Name> enable
+aaa authorization config-commands
+aaa authorization exec default group <Name> local
+aaa authorization commands 15 default group <Name> if-authenticated
+aaa accounting exec default start-stop group tacacs+
+aaa accounting commands 1 default stop-only group <Name>
+aaa accounting commands 15 default stop-only group tacacs+
+
+
+
 
  
 
