@@ -16,9 +16,11 @@ R12 ansible_host=192.168.1.231
 R13 ansible_host=192.168.1.232
 R14 ansible_host=192.168.1.233
 
+#R20 ansible_host=192.168.1.240
+
 
 [SWITCHES]
-192.168.1.250
+2960 ansible_host=192.168.1.250
 
 [NXOS]
 N9K-1 ansible_host=192.168.1.210
