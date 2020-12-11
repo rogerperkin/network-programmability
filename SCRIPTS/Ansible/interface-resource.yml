@@ -1,0 +1,23 @@
+---
+- name: Convert configured OSPFV2 resource to structured data
+  hosts: CSR_Routers 
+
+  gather_facts: false
+  tasks:
+
+  - name: Create inventory directory if not exist 
+    file:
+      path: "{{ inventory_dir }}/host_vars/{{ inventory_hostname }}"
+      state: directory
+
+
+  - name: Collect Interface info
+    cisco.ios.ios_l3_interfaces:
+      config:
+      state: gathered
+    register: interfaces  
+
+  - name: Write the INTERFACE configuration to a file
+    copy:
+      content: "{{ {'interfaces': interfaces['gathered']} | to_nice_yaml }}"
+      dest: "{{ inventory_dir }}/host_vars/{{ inventory_hostname }}/l3_interfaces.yml"
