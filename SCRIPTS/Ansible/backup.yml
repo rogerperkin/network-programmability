@@ -23,10 +23,6 @@
 
   tasks:
 
-   - name: Gather facts (ios)
-     cisco.ios.ios_facts:
-     when: ansible_network_os == 'cisco.ios.ios'
-     
    - name: Backup  
      ios_command:
        commands: show run  
@@ -36,17 +32,6 @@
      copy:
        content: "{{config.stdout[0]}}"
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-
-- hosts: SWITCHES
-
-  tasks:
-   - name: Backup Catalyst Switch 
-
-     ios_config:
-       backup: yes
-       backup_options:
-         filename: "{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-         dir_path: /home/roger/network-programmability/backups/{{hostvars.localhost.DTG}}
        
 - hosts: CSR_Routers 
 
@@ -79,6 +64,17 @@
      template: 
        src: template.j2 
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-showoutput.txt"
+
+- hosts: SWITCHES
+
+  tasks:
+   - name: Backup Catalyst Switch 
+
+     ios_config:
+       backup: yes
+       backup_options:
+         filename: "{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+         dir_path: /home/roger/network-programmability/backups/{{hostvars.localhost.DTG}}
 
 - hosts: NXOS
 
