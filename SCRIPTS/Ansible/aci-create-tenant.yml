@@ -1,23 +1,31 @@
 ---
-- name: Create Tenant 
+- name: Create New Tenant 
   hosts: ACI_Sandbox
   connection: local
- 
-  vars: 
+#==============================================================================================
+# Secure ACI credentials 
+#==============================================================================================
+  vars_files: 
+    - /home/roger/network-programmability/SCRIPTS/Ansible/aci-vars.yml
 
+#==============================================================================================
+# Local variables referenced by mapping 
+# Each time you want to reference APIC and Creds use <<: *apic_info
+#==============================================================================================
+  vars:
 #==============================================================================================
 # APIC access information.
 #==============================================================================================
     apic_info:                     &apic_info
-      host:                        sandboxapicdc.cisco.com
-      username:                    admin
-      password:                    ciscopsdt
+      host:                        "{{ apic }}"
+      username:                    "{{ aci_username }}"
+      password:                    "{{ aci_password }}"
       validate_certs:              no
-
+#==============================================================================================
   tasks:
     - name: Create Tenant 
       aci_tenant:
         <<: *apic_info
-        tenant: customer-xyz
-        description: Customer XYZ
+        tenant: customer X
+        description: Customer X
         state: present
