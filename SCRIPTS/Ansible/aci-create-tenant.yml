@@ -1,0 +1,23 @@
+---
+- name: Create Tenant 
+  hosts: ACI_Sandbox
+  connection: local
+ 
+  vars: 
+
+#==============================================================================================
+# APIC access information.
+#==============================================================================================
+    apic_info:                     &apic_info
+      host:                        sandboxapicdc.cisco.com
+      username:                    admin
+      password:                    ciscopsdt
+      validate_certs:              no
+
+  tasks:
+    - name: Create Tenant 
+      aci_tenant:
+        <<: *apic_info
+        tenant: customer-xyz
+        description: Customer XYZ
+        state: present
