@@ -26,6 +26,10 @@
     - name: Create Tenant 
       aci_tenant:
         <<: *apic_info
-        tenant: customer X
+        tenant: customer2
         description: Customer X
-        state: present
+        state: present 
+#========================================================        
+# To Remove a Tenant change the value of state: to absent
+#========================================================
+
