@@ -1,6 +1,6 @@
 ---
 - name: Create New Tenant 
-  hosts: ACI_Sandbox
+  hosts: localhost
   connection: local
 #==============================================================================================
 # Secure ACI credentials 
