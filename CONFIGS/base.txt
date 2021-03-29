@@ -9,6 +9,22 @@ line vty 0 4
  login local
  transport input ssh 
 
+#CML CSR 
+
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+
+ ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
+
+ int Gi4 
+ vrf forwarding Mgmt-intf
+ ip address 10.10.20.
+
 
 
  NEXUS 
