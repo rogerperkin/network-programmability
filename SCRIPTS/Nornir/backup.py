@@ -16,7 +16,7 @@ def backup_config(task, path):
 
 nr = InitNornir(config_file="./config.yml")
 
-devices = nr.filter(F(groups__contains="CSSHGO"))
+devices = nr.filter(F(groups__contains="CSR"))
 
 result = devices.run(
     name="Backup Device Configurations", path=BACKUP_PATH, task=backup_config
