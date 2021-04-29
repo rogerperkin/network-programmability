@@ -1,0 +1,13 @@
+# Playbook to push config file 
+
+- hosts: CSR_Routers
+  connection: network_cli
+
+  tasks:
+  - name: Push config file 
+    ios_config:
+      src: "deploy.j2"
+
+  - name: save running to startup when modified
+    ios_config:
+      save_when: modified
