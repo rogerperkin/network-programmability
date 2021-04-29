@@ -1,0 +1,4 @@
+---
+# As of V2.6.2 aireos_command does not support network_cli 
+
+ansible_connection: "local"
