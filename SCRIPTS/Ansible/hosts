@@ -38,7 +38,8 @@ vManage ansible_host=192.168.199
 vSmart ansible_host=192.168.1.200 
 vBond ansible_host=192.168.1.201 
 
-
+[ACI_Sandbox]
+sandboxapicdc.cisco.com
 
 
 
