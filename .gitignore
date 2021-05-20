@@ -9,6 +9,7 @@ nornir.log
 SCRIPTS/Ansible/vault-pass.yml
 SCRIPTS/Terraform/ASAv/.terraform/environment
 SCRIPTS/Terraform/ASAv/.terraform/modules/
+SCRIPTS/Terraform/learn-terraform-aws/.terraform/providers/
 
 
 
