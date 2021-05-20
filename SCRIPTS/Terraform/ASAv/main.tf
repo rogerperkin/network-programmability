@@ -45,14 +45,18 @@ resource "ciscoasa_static_route" "ipv4_static_route4" {
   interface = "INSIDE"
   network   = "10.251.0.0/16"
   gateway   = "192.168.10.20"
+
 }
 
 #================================================================
 # ACL configuration 
 #================================================================
 
+#================================================================
+# Custom config data specified in separate file tbc
+#================================================================
 
-
+# user_data = file("asav_config.txt")
 
 
 

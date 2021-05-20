@@ -1,0 +1,4 @@
+https://learn.hashicorp.com/tutorials/terraform/install-cli
+
+For ASAv - enable REST API 
+https://www.cisco.com/c/en/us/td/docs/security/asa/api/qsg-asa-api.html
