@@ -1,0 +1,13 @@
+# Playbook to push config from text file 
+
+- hosts: CSR_Routers
+  connection: network_cli
+
+  tasks:
+  - name: Push config file 
+    ios_config:
+      src: "./config.txt"
+
+  - name: save running to startup when modified
+    ios_config:
+      save_when: modified

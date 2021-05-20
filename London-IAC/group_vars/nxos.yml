@@ -1,0 +1,7 @@
+---
+# Default NXOS Connectivity variables 
+
+ansible_user: "roger"
+ansible_ssh_pass: "cisco"
+ansible_network_os: "nxos"
+ansible_connection: "network_cli"
