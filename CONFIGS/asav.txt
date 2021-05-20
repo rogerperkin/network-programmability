@@ -11,9 +11,14 @@ int management0/0
 management-only
 nameif management
 security-level 100
-ip address 192.168.1.246 255.255.255.0 standby 192.168.1.246
+ip address 192.168.1.245 255.255.255.0 standby 192.168.1.246
 no shutdown
 
 # Allow SSH access 
 
 ssh <subnet or host> <interface>
+
+# Enable ASDM access
+http server enable 
+http 0 0 management 
+
