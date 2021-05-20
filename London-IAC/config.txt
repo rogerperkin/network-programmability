@@ -1,0 +1,11 @@
+username steve password Stevespassword 
+username steve priv 15 
+
+interface Gi1
+no shutdown 
+
+interface Gi2
+shutdown 
+
+interface Gi3 
+shutdown 

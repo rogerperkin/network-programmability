@@ -1,0 +1,17 @@
+---
+#Playbook to backup Router config 
+
+- hosts: CSR_Routers 
+
+  tasks:
+
+   - name: Backup  
+     ios_command:
+       commands: show run  
+     register: config
+
+   - name: Save output to ~/network-programmability/London-IAC/backups/
+     copy:
+       content: "{{config.stdout[0]}}"
+       dest: "~/network-programmability/London-IAC/backups/{{inventory_hostname}}-config.txt"
+       
