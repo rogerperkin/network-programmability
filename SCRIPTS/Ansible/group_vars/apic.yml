@@ -1,0 +1,10 @@
+    username: admin
+    password: ciscopsdt
+
+---
+# Default ACI Sandbox Variables 
+
+ansible_user: "admin"
+ansible_ssh_pass: "cisco"
+ansible_network_os: "nxos"
+ansible_connection: "network_cli"

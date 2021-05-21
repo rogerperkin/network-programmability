@@ -1,0 +1,3 @@
+tenant,vrf,bd,bd_gateway,bd_mask,bd_scope,ap,epg,epg,epg,contract,contract,filter,filter,entry,entry,protocol,subject,subject,port,port,type,type
+csv,csv-vrf,csv-bd,10.1.1.1,24,private,csv_ap,web,app,db,web_to_app,app_to_db,web_to_app,app_to_db,http_entry,db_entry,tcp,web_to_app_sub,app_to_db_sub,80,1433,consumer,provider
+cvs2,csv2-vrf,csv2-bd,10.2.2.1,24,public,csv2_ap,moe,larry,curly,web_to_app,app_to_db,web_to_app,app_to_db,http_entry,db_entry,tcp,web_to_app_sub,app_to_db_sub,80,1433,consumer,provider
