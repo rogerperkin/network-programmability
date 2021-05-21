@@ -1,0 +1,11 @@
+/backups
+/SCRIPTS/Nornir/nornir.log 
+/envs
+/images
+nornir.log 
+.vscode/
+/SCRIPTS/Nornir/configs/
+/SCRIPTS/Nornir/backups/
+SCRIPTS/Ansible/vault-pass.yml
+SCRIPTS/Terraform/ASAv/.terraform/environment
+SCRIPTS/Terraform/ASAv/.terraform/modules/
