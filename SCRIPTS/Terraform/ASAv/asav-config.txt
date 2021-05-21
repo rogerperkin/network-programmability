@@ -1,0 +1,35 @@
+  
+hostname AwsCiscoASAv
+int gi 0/0
+ nameif outside
+ security-level 0
+ ip address dhcp setroute
+ no shut
+interface management0/0
+ nameif inside
+ security-level 100
+ ip address dhcp
+ no shut
+
+same-security-traffic permit inter-interface
+same-security-traffic permit intra-interface
+
+crypto key generate rsa modulus 2048
+ssh 0 0 inside
+ssh 0 0 outside
+ssh timeout 30
+aaa authentication ssh console LOCAL
+username admin nopassword privilege 15
+username admin attributes
+service-type admin
+dns domain-lookup outside
+DNS server-group DefaultDNS
+! where this address is the.2 on your public subnet
+name-server 172.16.20.2
+name 129.6.15.28 time-a.nist.gov
+name 129.6.15.29 time-b.nist.gov
+name 129.6.15.30 time-c.nist.gov
+ntp server time-c.nist.gov
+ntp server time-b.nist.gov
+ntp server time-a.nist.gov
+icmp permit any outside
