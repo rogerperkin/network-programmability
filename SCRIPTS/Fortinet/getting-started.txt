@@ -18,6 +18,10 @@ end
 Issues with Admnin access - https://kb.fortinet.com/kb/documentLink.do?externalID=FD34688
 
 
+#API Stuff 
+
+Backup config using Python / API - https://www.youtube.com/watch?v=NfHcUI85-MA
+
 
 
 
