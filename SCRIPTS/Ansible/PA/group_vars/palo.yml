@@ -2,3 +2,14 @@
 palo_provider:
   api_key: LUFRPT14MW5xOEo1R09KVlBZNnpnemh0VHRBOWl6TGM9bXcwM3JHUGVhRlNiY0dCR0srNERUQT09
   ip_address: "{{ ansible_host }}"
+
+adminusername: roger
+adminpassword: palo123
+
+dns_primary_ip: "1.1.1.1"
+dns_secondary_ip: "2.2.2.2"
+panorama_primary_ip: "3.3.3.3"
+panorama_secondary_ip: "4.4.4.4"
+ntp_server_primary_ip: "5.5.5.5"
+ntp_server_secondary_ip: "6.6.6.6"
+

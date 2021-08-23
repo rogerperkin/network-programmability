@@ -1,3 +1,7 @@
+# Pre Provision Playbook to get base config on a Palo Alto Firewall 
+
+# 1. Set hostname 
+
 ---
 
 - name: Palo Alto Playbook
@@ -7,7 +11,24 @@
   collections:
     - paloaltonetworks.panos
 
-  tasks:
+  tasks: 
+    - name: Set DNS and Panorama
+      panos_mgtconfig: 
+        provider: '{{ palo_provider }}'
+        dns_server_primary: '{{ dns_primary_ip }}'
+        dns_server_secondary: '{{ dns_secondary_ip }}'
+        panorama_primary: '{{ panorama_primary_ip }}'
+        panorama_secondary: '{{ panorama_secondary_ip }}'
+        commit: false
+    
+    - name: Set backup user account 
+      panos_administrator:
+        provider: '{{ palo_provider }}'
+        admin_username: '{{ adminusername }}'
+        admin_password: '{{ adminpassword }}'
+        superuser: true
+        commit: false 
+
     - name: Create Server Object
       panos_address_object:
         provider: '{{ palo_provider }}'
@@ -24,12 +45,12 @@
         description: 'users subnet'
         state: present
 
-    - name: Set Ethernet1/4 as static in zone Outside
+    - name: Set Ethernet1/1 as static in zone Outside
       panos_interface: 
         provider: '{{ palo_provider }}'
-        if_name: "ethernet1/4"
+        if_name: "ethernet1/1"
         mode: "layer3"
-        ip: "{{ ip.ethernet4 }}"
+        ip: "{{ ip.ethernet1 }}"
         enable_dhcp: false
         zone_name: "Outside"
         
