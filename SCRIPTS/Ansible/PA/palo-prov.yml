@@ -1,0 +1,49 @@
+---
+
+- name: Palo Alto Playbook
+  hosts: palo
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks:
+    - name: Create Server Object
+      panos_address_object:
+        provider: '{{ palo_provider }}'
+        name: 'server1'
+        value: '172.16.1.10'
+        description: 'vmware'
+        state: present
+
+    - name: Create Users Object
+      panos_address_object:
+        provider: '{{ palo_provider }}'
+        name: 'users-subnet'
+        value: '10.10.10.0/24'
+        description: 'users subnet'
+        state: present
+
+    - name: Set Ethernet1/4 as static in zone Outside
+      panos_interface: 
+        provider: '{{ palo_provider }}'
+        if_name: "ethernet1/4"
+        mode: "layer3"
+        ip: "{{ ip.ethernet4 }}"
+        enable_dhcp: false
+        zone_name: "Outside"
+        
+    # - name: Set ports for HA mode 
+    #   panos_interface: 
+    #     provider: '{{palo_provider}}'
+    #     if_name: "{{ item }}"
+    #     mode: "ha"
+    #     enable_dhcp: false
+    #   with_items: 
+    #     - ethernet1/3
+    #     - ethernet1/4
+
+
+    - name: Commit 
+      panos_commit_firewall:
+        provider: '{{ palo_provider }}'

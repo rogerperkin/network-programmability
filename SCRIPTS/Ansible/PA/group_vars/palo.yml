@@ -1,0 +1,4 @@
+---
+palo_provider:
+  api_key: LUFRPT14MW5xOEo1R09KVlBZNnpnemh0VHRBOWl6TGM9bXcwM3JHUGVhRlNiY0dCR0srNERUQT09
+  ip_address: "{{ ansible_host }}"

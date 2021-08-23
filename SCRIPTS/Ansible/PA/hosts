@@ -1,0 +1,4 @@
+[palo]
+PA-1 ansible_host=192.168.1.128
+PA-2 ansible_host=192.168.1.198
+

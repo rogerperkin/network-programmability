@@ -1,0 +1,10 @@
+# How to get started with Palo Alto and Ansible 
+
+# Get ip from PA via CLI 
+show system info
+
+# Get API key from firewall 
+curl -k -X POST 'https://192.168.1.128/api/?type=keygen&user=admin&password=admin'
+
+SSH - RSA key issue
+
