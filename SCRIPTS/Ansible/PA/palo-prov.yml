@@ -1,7 +1,4 @@
 # Pre Provision Playbook to get base config on a Palo Alto Firewall 
-
-# 1. Set hostname 
-
 ---
 
 - name: Palo Alto Playbook
@@ -12,13 +9,18 @@
     - paloaltonetworks.panos
 
   tasks: 
+
+    - name: Set Hostname 
+      panos_mgtconfig: 
+        provider: '{{ palo_provider }}'
+        hostname: '{{ hostname }}'
     - name: Set DNS and Panorama
       panos_mgtconfig: 
         provider: '{{ palo_provider }}'
         dns_server_primary: '{{ dns_primary_ip }}'
         dns_server_secondary: '{{ dns_secondary_ip }}'
         panorama_primary: '{{ panorama_primary_ip }}'
-        panorama_secondary: '{{ panorama_secondary_ip }}'
+#        panorama_secondary: '{{ panorama_secondary_ip }}'
         commit: false
     
     - name: Set backup user account 
@@ -29,22 +31,6 @@
         superuser: true
         commit: false 
 
-    - name: Create Server Object
-      panos_address_object:
-        provider: '{{ palo_provider }}'
-        name: 'server1'
-        value: '172.16.1.10'
-        description: 'vmware'
-        state: present
-
-    - name: Create Users Object
-      panos_address_object:
-        provider: '{{ palo_provider }}'
-        name: 'users-subnet'
-        value: '10.10.10.0/24'
-        description: 'users subnet'
-        state: present
-
     - name: Set Ethernet1/1 as static in zone Outside
       panos_interface: 
         provider: '{{ palo_provider }}'
@@ -53,17 +39,8 @@
         ip: "{{ ip.ethernet1 }}"
         enable_dhcp: false
         zone_name: "Outside"
-        
-    # - name: Set ports for HA mode 
-    #   panos_interface: 
-    #     provider: '{{palo_provider}}'
-    #     if_name: "{{ item }}"
-    #     mode: "ha"
-    #     enable_dhcp: false
-    #   with_items: 
-    #     - ethernet1/3
-    #     - ethernet1/4
 
+# Enable BGP 
 
     - name: Commit 
       panos_commit_firewall:
