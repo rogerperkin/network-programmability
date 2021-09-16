@@ -1,0 +1,16 @@
+---
+
+- name: Create Template Panorama
+  hosts: panorama
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks: 
+
+    - name: Create Template Test
+      panos_device_group:
+        provider: '{{ palo_provider }}'
+        name: 'Ansible Device Group'
+        
