@@ -4,6 +4,8 @@
 # It will then  extract the running config from each devices and save them locally in ./config/
 # It also pulls the API key 
 
+# Author Roger Perkin 
+
 - hosts: localhost
 
   tasks:
