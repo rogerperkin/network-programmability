@@ -4,12 +4,29 @@
 # It will then  extract the running config from each devices and save them locally in ./config/
 # It also pulls the API key 
 
-- name: Pull Configuration from Palo Alto Firewalls
-  hosts: allpalo
-#  pre_tasks:
-#    - include_vars: vars.yml
+- hosts: localhost
 
   tasks:
+
+    - name: Get ansible date/time facts
+      setup:
+        filter: "ansible_date_time"
+        gather_subset: "!all"
+
+    - name: Store DTG as fact
+      set_fact:
+        DTG: "{{ ansible_date_time.date }}"
+
+    - name: Create Directory {{hostvars.localhost.DTG}}
+      file:
+       path: ~/network-programmability/SCRIPTS/Ansible/PA/configs/{{hostvars.localhost.DTG}}
+       state: directory
+
+- name: Pull Configuration from Palo Alto Firewalls
+  hosts: allpalo
+
+  tasks:
+
     - name: Generate API Key
       connection: local
       check_mode: no
@@ -43,4 +60,5 @@
       check_mode: no
       copy:
         content: "{{configuration_string['content']  | regex_replace('<response.*<result>') | regex_replace('</result></response>')}}"
-        dest: '{{configs_dir}}{{hostname}}.txt'
+        dest: '{{configs_dir}}{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.xml'
+ 

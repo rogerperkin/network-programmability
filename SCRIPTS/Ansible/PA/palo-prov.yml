@@ -14,6 +14,7 @@
       panos_mgtconfig: 
         provider: '{{ palo_provider }}'
         hostname: '{{ hostname }}'
+
     - name: Set DNS and Panorama
       panos_mgtconfig: 
         provider: '{{ palo_provider }}'
@@ -40,7 +41,43 @@
         enable_dhcp: false
         zone_name: "Outside"
 
+    - name: Create INSIDE Zone
+      panos_zone:
+        provider: '{{ palo_provider}}'
+        zone: 'INSIDE'
+        mode: 'layer3' 
+    
+    - name: Create USERS Zone
+      panos_zone:
+        provider: '{{ palo_provider}}'
+        zone: 'USERS'
+        mode: 'layer3'
+
+    - name: ethernet1/2 config
+      panos_interface:
+        provider: '{{ palo_provider }}'
+        if_name: 'ethernet1/2'
+        zone_name: 'USERS'
+        mode: 'layer3'
+        enable_dhcp: false
+        ip: ['10.10.10.1/24']
+
+    - name: Create Server Objects
+      panos_address_object:
+        provider: '{{ palo_provider }}'
+        name:  "{{ item['name'] }}"
+        value: "{{ item['ip'] }}"
+        description: "{{ item['description'] }}"
+      loop: "{{ servers }}"
+
 # Enable BGP 
+
+    - name: create DMZ zone on a firewall
+      panos_zone:
+        provider: '{{ palo_provider }}'
+        zone: 'dmz'
+        mode: 'layer3'
+#        zone_profile: 'strict'
 
     - name: Commit 
       panos_commit_firewall:
