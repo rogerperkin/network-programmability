@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+COPY  ./playbooks /etc/playbooks/
+
 RUN echo "===> Update the index of all available packages ..."             && \
            apk update 
 
@@ -28,3 +30,6 @@ RUN echo "===> Install Ansible ..."                                   && \
       pip3 install                                                           \
         'ansible==2.10.0'                                            \
         ansible-lint
+
+
+                                                       
