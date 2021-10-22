@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-# COPY  ./playbooks /etc/playbooks/
+# COPY  ./PA /playbooks/
 
 RUN echo "===> Update the index of all available packages ..."             && \
            apk update 
@@ -32,7 +32,9 @@ RUN echo "===> Install Ansible ..."                                   && \
         'ansible==2.10.0'                                            \
         ansible-lint
 
-RUN mkdir /etc/ansible /ansible
+RUN mkdir /playbooks
+
+COPY  ./PA/  /playbooks/
 
 RUN echo "===> Install Panos Ansible Collection .. "                  && \
        ansible-galaxy collection install paloaltonetworks.panos
