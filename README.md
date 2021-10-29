@@ -10,3 +10,13 @@ https://github.com/rogerperkin/network-programmability/tree/master/SCRIPTS/Ansib
 ## Ansible Network Automation Course 
 https://www.rogerperkin.co.uk/network-automation/ansible/course/
 
+# Table Example 
+| First Header  | Second Header |
+|---------------|---------------|
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+
