@@ -5,6 +5,7 @@
 # It also pulls the API key 
 
 # Author Roger Perkin 
+# Refactored after Code Review 6/12/21
 
 - hosts: localhost
 
