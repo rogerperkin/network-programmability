@@ -21,7 +21,7 @@
 
     - name: Create Directory {{hostvars.localhost.DTG}}
       file:
-       path: ~/network-programmability/SCRIPTS/Ansible/PA/configs/{{hostvars.localhost.DTG}}
+       path: ./{{configs_dir}}/{{hostvars.localhost.DTG}}
        state: directory
 
 - name: Pull Configuration from Palo Alto Firewalls
@@ -47,7 +47,7 @@
         xpath: '/response/result/key'
       register: key_list
 
-    - name: Backup configuration from PAN Equipement
+    - name: Backup configuration from PAN Equipment
       connection: local
       check_mode: no
       uri:
