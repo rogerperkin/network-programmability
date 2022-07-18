@@ -1,0 +1,1035 @@
+Building configuration...
+
+Current configuration : 6825 bytes
+!
+! Last configuration change at 13:59:48 UTC Thu Jul 7 2022 by NETCONF
+!
+version 16.9
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname TUYETVOI
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 5 $1$dAnr$MQbNXMNy//wugqUbtZ2vk/
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip host test20.local 192.0.2.20
+no ip domain lookup
+!
+ip dhcp pool conf
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1 
+ dns-server 192.168.1.1 192.168.1.1 
+ domain-name cisco-router.home
+ lease 9
+!
+!
+!
+login block-for 30 attempts 5 within 3
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-65385644
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-65385644
+ revocation-check none
+ rsakeypair TP-self-signed-65385644
+!
+!
+crypto pki certificate chain TP-self-signed-65385644
+ certificate self-signed 01
+  3082032C 30820214 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  2F312D30 2B060355 04031324 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36353338 35363434 301E170D 31393035 32323139 33383539 
+  5A170D33 30303130 31303030 3030305A 302F312D 302B0603 55040313 24494F53 
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D363533 38353634 
+  34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 0A028201 
+  0100C96F D53A4C23 F96F71E2 BA91DAA3 C4546EAD 399F1B32 CA9BB364 C528FFFD 
+  9F2A0CCE D5FD2756 6452B91B 2DCC328D 6951AEF3 BD25A687 62354EF7 0C68717E 
+  94BF7B1E 320231A5 FFB9B765 A5616FD3 673709D5 7E89DB6D E6A14B85 E3FE2153 
+  DFA8B852 BB37CCB4 4C523450 2A757DB5 8FB13133 0DE79EAE 579DDFE9 EA4B6C2A 
+  CD8DC33E F69A0F45 020367D1 0C8451F1 AB9C0891 2A1AF1E5 2245E739 43CB1F48 
+  03324EDF 7A647E25 86552D27 EEE5E05D EB01D886 4D00C47A B9B022AD AACA9E84 
+  5D5627BD B0D6F2FC C5103F0E 808E5822 86B63301 C2B7B50C BBA6F3D1 471F2A53 
+  B02E5DA1 DC1ECF46 116EAC77 160090AF 7AB23919 1896AA07 6893E638 8CE05F53 
+  E5EB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14A162A4 D3CD7E6B 7E775D4E CA02E2DA 5AEBC668 45301D06 
+  03551D0E 04160414 A162A4D3 CD7E6B7E 775D4ECA 02E2DA5A EBC66845 300D0609 
+  2A864886 F70D0101 05050003 82010100 8034A615 EED522BA 8A4D45D9 107A1C72 
+  B622ECB6 26EB96AA AD26A14D 34FC54B6 93F03F5D F1C1F1DB C716B213 67342ADF 
+  0E4F4313 00C19914 B8EAD89F D90FDCF7 943D9304 3E3158A7 2E7558D3 C90D9540 
+  F8CDB4AE 9A266418 DA396402 6954BAA6 D49FB91B 5795EBD7 17C260BA AD2DCD40 
+  6C86E58F 3D521061 A7ADC34D B1875BBA A5EC9877 57D65870 1134D226 EA884C43 
+  CEA1F154 905F1872 E5FA575F 9C060B34 BA18FBB5 E03AB440 12D37659 B70A7C8A 
+  9D32DD93 95BBE653 F39D1A30 2062C41C B3857FA5 9C6E2FAE 61E10F20 7B8994B9 
+  DADCE497 38BD1450 8D1BF507 E9C0CD94 EFED9FA2 D888C58F 700A7182 1A2F12B2 
+  32AF600E 7623C1E2 026B06FA EA75E800
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 926V75BDNRJ
+license accept end user agreement
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+
+et-analytics
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username developer privilege 15 secret 5 $1$UfAk$XgRQ3Z016ZFog/uS3FH1e/
+username cisco privilege 15 secret 5 $1$htem$yQcp19KkysT7AV1GI5TAJ1
+username root privilege 15 secret 5 $1$F2Ov$Ax5.47hkCDThKbWt1.M4U0
+username git privilege 15 secret 5 $1$48DE$IVcpjYDjLHkEZ.WvgY2q61
+username admin privilege 15 secret 5 $1$3jPd$2TGOZQ01Bxc3US7IU1z9I1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+cdp run
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback47
+ ip address 47.47.47.47 255.255.255.0
+!
+interface Loopback51
+ no ip address
+!
+interface Loopback61
+ no ip address
+!
+interface Loopback66
+ description TestLoop
+ ip address 66.66.66.66 255.255.255.255
+!
+interface Loopback71
+ no ip address
+!
+interface Loopback75
+ description Configured by RESTCONF
+ ip address 172.16.0.59 255.255.255.0
+!
+interface Loopback124
+ description Creating a Loopback interface using RESTCONF and POST
+ ip address 172.16.123.123 255.255.255.255
+!
+interface Loopback145
+ description Configured by CORVIT
+ ip address 172.165.100.1 255.255.255.0
+!
+interface Loopback199
+ description Configured by RESTCONF
+ ip address 10.25.55.1 255.255.255.255
+!
+interface Loopback201
+ description Configured by RESTCONF
+ ip address 143.2.1.1 255.255.255.0
+!
+interface Loopback420
+ description Configured by RESTCONF
+ ip address 172.16.100.12 255.255.255.0
+!
+interface Loopback555
+ description Configured by NABY
+ ip address 10.10.11.11 255.255.255.0
+!
+interface Loopback1234
+ description Added with RESTCONF
+ ip address 123.123.123.123 255.255.255.255
+!
+interface Loopback2438
+ description restconf frfr
+ no ip address
+!
+interface Loopback11111
+ description My NETCONF loopback
+ ip address 10.1.1.1 255.255.255.0
+!
+interface VirtualPortGroup0
+ ip address 192.168.10.10 255.255.255.0
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ description NETCONF
+ ip address 100.100.100.5 255.255.255.0 secondary
+ ip address 10.10.20.48 255.255.255.0
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Configured by RESTCONF
+ ip address 10.255.255.1 255.255.255.0
+ ip nat inside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Configured by RESTCONF
+ ip address 10.24.54.5 255.255.255.0
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+iox
+ip nat inside source static 131.226.217.149 172.16.131.1
+ip nat inside source static 10.114.11.39 172.16.131.2
+ip nat inside source static 10.24.54.5 172.16.131.3
+ip nat inside source list NAT-ACL interface GigabitEthernet1 overload
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 10.10.20.254
+!
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip ssh pubkey-chain
+  username git
+   key-hash ssh-rsa 58627CE02F50A2E7904D533F6C9C129E
+ip ssh server algorithm kex diffie-hellman-group14-sha1
+ip scp server enable
+!
+!
+ip prefix-list STATIC-ROUTES seq 5 permit 1.1.1.1/32
+!
+ip access-list extended NAT-ACL
+ permit ip 192.168.1.0 0.0.0.255 any
+logging trap errors
+logging facility local6
+!
+!
+snmp-server community pass123 RO
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner login ^C
+this is my DEMO login banner
+that contains a login message
+string
+^C
+banner motd ^CHello bruv^C
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 60 0
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+!
+app-hosting appid guestshell
+ app-vnic gateway0 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.1.2 netmask 255.255.255.0
+ name-server0 8.8.8.8
+end
+
+Building configuration...
+
+Current configuration : 6825 bytes
+!
+! Last configuration change at 13:59:48 UTC Thu Jul 7 2022 by NETCONF
+!
+version 16.9
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname TUYETVOI
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 5 $1$dAnr$MQbNXMNy//wugqUbtZ2vk/
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip host test20.local 192.0.2.20
+no ip domain lookup
+!
+ip dhcp pool conf
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1 
+ dns-server 192.168.1.1 192.168.1.1 
+ domain-name cisco-router.home
+ lease 9
+!
+!
+!
+login block-for 30 attempts 5 within 3
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-65385644
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-65385644
+ revocation-check none
+ rsakeypair TP-self-signed-65385644
+!
+!
+crypto pki certificate chain TP-self-signed-65385644
+ certificate self-signed 01
+  3082032C 30820214 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  2F312D30 2B060355 04031324 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36353338 35363434 301E170D 31393035 32323139 33383539 
+  5A170D33 30303130 31303030 3030305A 302F312D 302B0603 55040313 24494F53 
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D363533 38353634 
+  34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 0A028201 
+  0100C96F D53A4C23 F96F71E2 BA91DAA3 C4546EAD 399F1B32 CA9BB364 C528FFFD 
+  9F2A0CCE D5FD2756 6452B91B 2DCC328D 6951AEF3 BD25A687 62354EF7 0C68717E 
+  94BF7B1E 320231A5 FFB9B765 A5616FD3 673709D5 7E89DB6D E6A14B85 E3FE2153 
+  DFA8B852 BB37CCB4 4C523450 2A757DB5 8FB13133 0DE79EAE 579DDFE9 EA4B6C2A 
+  CD8DC33E F69A0F45 020367D1 0C8451F1 AB9C0891 2A1AF1E5 2245E739 43CB1F48 
+  03324EDF 7A647E25 86552D27 EEE5E05D EB01D886 4D00C47A B9B022AD AACA9E84 
+  5D5627BD B0D6F2FC C5103F0E 808E5822 86B63301 C2B7B50C BBA6F3D1 471F2A53 
+  B02E5DA1 DC1ECF46 116EAC77 160090AF 7AB23919 1896AA07 6893E638 8CE05F53 
+  E5EB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14A162A4 D3CD7E6B 7E775D4E CA02E2DA 5AEBC668 45301D06 
+  03551D0E 04160414 A162A4D3 CD7E6B7E 775D4ECA 02E2DA5A EBC66845 300D0609 
+  2A864886 F70D0101 05050003 82010100 8034A615 EED522BA 8A4D45D9 107A1C72 
+  B622ECB6 26EB96AA AD26A14D 34FC54B6 93F03F5D F1C1F1DB C716B213 67342ADF 
+  0E4F4313 00C19914 B8EAD89F D90FDCF7 943D9304 3E3158A7 2E7558D3 C90D9540 
+  F8CDB4AE 9A266418 DA396402 6954BAA6 D49FB91B 5795EBD7 17C260BA AD2DCD40 
+  6C86E58F 3D521061 A7ADC34D B1875BBA A5EC9877 57D65870 1134D226 EA884C43 
+  CEA1F154 905F1872 E5FA575F 9C060B34 BA18FBB5 E03AB440 12D37659 B70A7C8A 
+  9D32DD93 95BBE653 F39D1A30 2062C41C B3857FA5 9C6E2FAE 61E10F20 7B8994B9 
+  DADCE497 38BD1450 8D1BF507 E9C0CD94 EFED9FA2 D888C58F 700A7182 1A2F12B2 
+  32AF600E 7623C1E2 026B06FA EA75E800
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 926V75BDNRJ
+license accept end user agreement
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+
+et-analytics
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username developer privilege 15 secret 5 $1$UfAk$XgRQ3Z016ZFog/uS3FH1e/
+username cisco privilege 15 secret 5 $1$htem$yQcp19KkysT7AV1GI5TAJ1
+username root privilege 15 secret 5 $1$F2Ov$Ax5.47hkCDThKbWt1.M4U0
+username git privilege 15 secret 5 $1$48DE$IVcpjYDjLHkEZ.WvgY2q61
+username admin privilege 15 secret 5 $1$3jPd$2TGOZQ01Bxc3US7IU1z9I1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+cdp run
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback47
+ ip address 47.47.47.47 255.255.255.0
+!
+interface Loopback51
+ no ip address
+!
+interface Loopback61
+ no ip address
+!
+interface Loopback66
+ description TestLoop
+ ip address 66.66.66.66 255.255.255.255
+!
+interface Loopback71
+ no ip address
+!
+interface Loopback75
+ description Configured by RESTCONF
+ ip address 172.16.0.59 255.255.255.0
+!
+interface Loopback124
+ description Creating a Loopback interface using RESTCONF and POST
+ ip address 172.16.123.123 255.255.255.255
+!
+interface Loopback145
+ description Configured by CORVIT
+ ip address 172.165.100.1 255.255.255.0
+!
+interface Loopback199
+ description Configured by RESTCONF
+ ip address 10.25.55.1 255.255.255.255
+!
+interface Loopback201
+ description Configured by RESTCONF
+ ip address 143.2.1.1 255.255.255.0
+!
+interface Loopback420
+ description Configured by RESTCONF
+ ip address 172.16.100.12 255.255.255.0
+!
+interface Loopback555
+ description Configured by NABY
+ ip address 10.10.11.11 255.255.255.0
+!
+interface Loopback1234
+ description Added with RESTCONF
+ ip address 123.123.123.123 255.255.255.255
+!
+interface Loopback2438
+ description restconf frfr
+ no ip address
+!
+interface Loopback11111
+ description My NETCONF loopback
+ ip address 10.1.1.1 255.255.255.0
+!
+interface VirtualPortGroup0
+ ip address 192.168.10.10 255.255.255.0
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ description NETCONF
+ ip address 100.100.100.5 255.255.255.0 secondary
+ ip address 10.10.20.48 255.255.255.0
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Configured by RESTCONF
+ ip address 10.255.255.1 255.255.255.0
+ ip nat inside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Configured by RESTCONF
+ ip address 10.24.54.5 255.255.255.0
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+iox
+ip nat inside source static 131.226.217.149 172.16.131.1
+ip nat inside source static 10.114.11.39 172.16.131.2
+ip nat inside source static 10.24.54.5 172.16.131.3
+ip nat inside source list NAT-ACL interface GigabitEthernet1 overload
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 10.10.20.254
+!
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip ssh pubkey-chain
+  username git
+   key-hash ssh-rsa 58627CE02F50A2E7904D533F6C9C129E
+ip ssh server algorithm kex diffie-hellman-group14-sha1
+ip scp server enable
+!
+!
+ip prefix-list STATIC-ROUTES seq 5 permit 1.1.1.1/32
+!
+ip access-list extended NAT-ACL
+ permit ip 192.168.1.0 0.0.0.255 any
+logging trap errors
+logging facility local6
+!
+!
+snmp-server community pass123 RO
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner login ^C
+this is my DEMO login banner
+that contains a login message
+string
+^C
+banner motd ^CHello bruv^C
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 60 0
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+!
+app-hosting appid guestshell
+ app-vnic gateway0 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.1.2 netmask 255.255.255.0
+ name-server0 8.8.8.8
+end
+
+Cisco IOS XE Software, Version 16.09.03
+Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.3, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Wed 20-Mar-19 07:56 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2019 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+TUYETVOI uptime is 3 days, 8 hours, 26 minutes
+Uptime for this control processor is 3 days, 8 hours, 28 minutes
+System returned to ROM by reload
+System image file is "bootflash:packages.conf"
+Last reload reason: Reload Command
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: Default. No valid license found.
+Next reload license Level: ax
+
+
+Smart Licensing Status: Smart Licensing is DISABLED
+
+cisco CSR1000V (VXE) processor (revision VXE) with 2392579K/3075K bytes of memory.
+Processor board ID 926V75BDNRJ
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+8113280K bytes of physical memory.
+7774207K bytes of virtual hard disk at bootflash:.
+0K bytes of WebUI ODM Files at webui:.
+
+Configuration register is 0x2102
+
+Building configuration...
+
+Current configuration : 6827 bytes
+!
+! Last configuration change at 14:52:47 UTC Thu Jul 7 2022 by developer
+!
+version 16.9
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname TUYETVOI
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 5 $1$dAnr$MQbNXMNy//wugqUbtZ2vk/
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip host test20.local 192.0.2.20
+no ip domain lookup
+!
+ip dhcp pool conf
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1 
+ dns-server 192.168.1.1 192.168.1.1 
+ domain-name cisco-router.home
+ lease 9
+!
+!
+!
+login block-for 30 attempts 5 within 3
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-65385644
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-65385644
+ revocation-check none
+ rsakeypair TP-self-signed-65385644
+!
+!
+crypto pki certificate chain TP-self-signed-65385644
+ certificate self-signed 01
+  3082032C 30820214 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  2F312D30 2B060355 04031324 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36353338 35363434 301E170D 31393035 32323139 33383539 
+  5A170D33 30303130 31303030 3030305A 302F312D 302B0603 55040313 24494F53 
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D363533 38353634 
+  34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 0A028201 
+  0100C96F D53A4C23 F96F71E2 BA91DAA3 C4546EAD 399F1B32 CA9BB364 C528FFFD 
+  9F2A0CCE D5FD2756 6452B91B 2DCC328D 6951AEF3 BD25A687 62354EF7 0C68717E 
+  94BF7B1E 320231A5 FFB9B765 A5616FD3 673709D5 7E89DB6D E6A14B85 E3FE2153 
+  DFA8B852 BB37CCB4 4C523450 2A757DB5 8FB13133 0DE79EAE 579DDFE9 EA4B6C2A 
+  CD8DC33E F69A0F45 020367D1 0C8451F1 AB9C0891 2A1AF1E5 2245E739 43CB1F48 
+  03324EDF 7A647E25 86552D27 EEE5E05D EB01D886 4D00C47A B9B022AD AACA9E84 
+  5D5627BD B0D6F2FC C5103F0E 808E5822 86B63301 C2B7B50C BBA6F3D1 471F2A53 
+  B02E5DA1 DC1ECF46 116EAC77 160090AF 7AB23919 1896AA07 6893E638 8CE05F53 
+  E5EB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14A162A4 D3CD7E6B 7E775D4E CA02E2DA 5AEBC668 45301D06 
+  03551D0E 04160414 A162A4D3 CD7E6B7E 775D4ECA 02E2DA5A EBC66845 300D0609 
+  2A864886 F70D0101 05050003 82010100 8034A615 EED522BA 8A4D45D9 107A1C72 
+  B622ECB6 26EB96AA AD26A14D 34FC54B6 93F03F5D F1C1F1DB C716B213 67342ADF 
+  0E4F4313 00C19914 B8EAD89F D90FDCF7 943D9304 3E3158A7 2E7558D3 C90D9540 
+  F8CDB4AE 9A266418 DA396402 6954BAA6 D49FB91B 5795EBD7 17C260BA AD2DCD40 
+  6C86E58F 3D521061 A7ADC34D B1875BBA A5EC9877 57D65870 1134D226 EA884C43 
+  CEA1F154 905F1872 E5FA575F 9C060B34 BA18FBB5 E03AB440 12D37659 B70A7C8A 
+  9D32DD93 95BBE653 F39D1A30 2062C41C B3857FA5 9C6E2FAE 61E10F20 7B8994B9 
+  DADCE497 38BD1450 8D1BF507 E9C0CD94 EFED9FA2 D888C58F 700A7182 1A2F12B2 
+  32AF600E 7623C1E2 026B06FA EA75E800
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 926V75BDNRJ
+license accept end user agreement
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+
+et-analytics
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username developer privilege 15 secret 5 $1$UfAk$XgRQ3Z016ZFog/uS3FH1e/
+username cisco privilege 15 secret 5 $1$htem$yQcp19KkysT7AV1GI5TAJ1
+username root privilege 15 secret 5 $1$F2Ov$Ax5.47hkCDThKbWt1.M4U0
+username git privilege 15 secret 5 $1$48DE$IVcpjYDjLHkEZ.WvgY2q61
+username admin privilege 15 secret 5 $1$3jPd$2TGOZQ01Bxc3US7IU1z9I1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+cdp run
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback47
+ ip address 47.47.47.47 255.255.255.0
+!
+interface Loopback51
+ no ip address
+!
+interface Loopback61
+ no ip address
+!
+interface Loopback66
+ description TestLoop
+ ip address 66.66.66.66 255.255.255.255
+!
+interface Loopback71
+ no ip address
+!
+interface Loopback75
+ description Configured by RESTCONF
+ ip address 172.16.0.59 255.255.255.0
+!
+interface Loopback124
+ description Creating a Loopback interface using RESTCONF and POST
+ ip address 172.16.123.123 255.255.255.255
+!
+interface Loopback145
+ description Configured by CORVIT
+ ip address 172.165.100.1 255.255.255.0
+!
+interface Loopback199
+ description Configured by RESTCONF
+ ip address 10.25.55.1 255.255.255.255
+!
+interface Loopback201
+ description Configured by RESTCONF
+ ip address 143.2.1.1 255.255.255.0
+!
+interface Loopback420
+ description Configured by RESTCONF
+ ip address 172.16.100.12 255.255.255.0
+!
+interface Loopback555
+ description Configured by NABY
+ ip address 10.10.11.11 255.255.255.0
+!
+interface Loopback1234
+ description Added with RESTCONF
+ ip address 123.123.123.123 255.255.255.255
+!
+interface Loopback2438
+ description restconf frfr
+ no ip address
+!
+interface Loopback11111
+ description My NETCONF loopback
+ ip address 10.1.1.1 255.255.255.0
+!
+interface VirtualPortGroup0
+ ip address 192.168.10.10 255.255.255.0
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ description NETCONF
+ ip address 100.100.100.5 255.255.255.0 secondary
+ ip address 10.10.20.48 255.255.255.0
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Configured by RESTCONF
+ ip address 10.255.255.1 255.255.255.0
+ ip nat inside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Configured by RESTCONF
+ ip address 10.24.54.5 255.255.255.0
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+iox
+ip nat inside source static 131.226.217.149 172.16.131.1
+ip nat inside source static 10.114.11.39 172.16.131.2
+ip nat inside source static 10.24.54.5 172.16.131.3
+ip nat inside source list NAT-ACL interface GigabitEthernet1 overload
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 10.10.20.254
+!
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip ssh pubkey-chain
+  username git
+   key-hash ssh-rsa 58627CE02F50A2E7904D533F6C9C129E
+ip ssh server algorithm kex diffie-hellman-group14-sha1
+ip scp server enable
+!
+!
+ip prefix-list STATIC-ROUTES seq 5 permit 1.1.1.1/32
+!
+ip access-list extended NAT-ACL
+ permit ip 192.168.1.0 0.0.0.255 any
+logging trap errors
+logging facility local6
+!
+!
+snmp-server community pass123 RO
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner login ^C
+this is my DEMO login banner
+that contains a login message
+string
+^C
+banner motd ^CHello bruv^C
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 60 0
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+!
+app-hosting appid guestshell
+ app-vnic gateway0 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.1.2 netmask 255.255.255.0
+ name-server0 8.8.8.8
+end
+
+Cisco IOS XE Software, Version 16.09.03
+Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.3, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Wed 20-Mar-19 07:56 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2019 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+TUYETVOI uptime is 3 days, 8 hours, 49 minutes
+Uptime for this control processor is 3 days, 8 hours, 50 minutes
+System returned to ROM by reload
+System image file is "bootflash:packages.conf"
+Last reload reason: Reload Command
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: Default. No valid license found.
+Next reload license Level: ax
+
+
+Smart Licensing Status: Smart Licensing is DISABLED
+
+cisco CSR1000V (VXE) processor (revision VXE) with 2392579K/3075K bytes of memory.
+Processor board ID 926V75BDNRJ
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+8113280K bytes of physical memory.
+7774207K bytes of virtual hard disk at bootflash:.
+0K bytes of WebUI ODM Files at webui:.
+
+Configuration register is 0x2102
+
