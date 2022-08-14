@@ -14,7 +14,7 @@ https://github.com/rogerperkin/network-programmability/tree/master/SCRIPTS/Ansib
 https://www.rogerperkin.co.uk/network-automation/ansible/course/
 
 ## Python Scripts for Network Engineers 
-<a href="https://www.rogerperkin.co.uk/network-automation/python/scripts-for-network-engineers/>Python Scripts for Network Engineers</a>
+<a href="https://www.rogerperkin.co.uk/network-automation/python/scripts-for-network-engineers">Python Scripts for Network Engineers</a>
 
 # Table Example 
 
