@@ -1,0 +1,33 @@
+  ---
+- name: Configuring Tenant with CSV file
+  hosts: apic1
+  connection: local
+
+  tasks:
+  # Read a CSV file and access Tenant csv
+  - name: Read data from CSV file to be used to configure ACI
+    read_csv:
+      path: tenant.csv
+      # key: tenant
+    register: mytenant
+    delegate_to: localhost
+
+  # Used for debugging purposes to make sure list is correct.
+  - debug:
+      msg: Tenant {{ mytenant.list.0.tenant }} and VRF {{ mytenant.list.0.vrf }}
+
+  - debug:
+      msg: Tenant {{ mytenant.list.1.tenant }} and VRF {{ mytenant.list.1.vrf }}
+
+  - name: Create Tenants using CSV and loop
+    aci_tenant:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      private_key: "{{ private_key }}"
+      tenant: "{{ item.tenant }}"
+      description: "Tenant configured by Ansible"
+      validate_certs: false
+      state: present
+    loop:
+      - tenant: "{{ mytenant.list.0.tenant }}"
+      - tenant: "{{ mytenant.list.1.tenant }}"

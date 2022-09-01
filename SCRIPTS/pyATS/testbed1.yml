@@ -1,0 +1,27 @@
+devices:
+  CSR-1:
+    connections:
+      cli:
+        ip: 192.168.1.220
+        protocol: ssh
+    credentials:
+      default:
+        password: cisco
+        username: roger
+      enable:
+        password: cisco
+    os: ios
+    type: ios
+  CSR-2:
+    connections:
+      cli:
+        ip: 192.168.1.221
+        protocol: ssh
+    credentials:
+      default:
+        password: cisco
+        username: roger
+      enable:
+        password: cisco
+    os: ios
+    type: ios

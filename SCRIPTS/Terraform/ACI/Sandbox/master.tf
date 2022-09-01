@@ -1,9 +1,9 @@
-# Teraform file to make ACI changes 
+# Teraform file to make changes to ACI
 
 terraform {
   required_providers {
     aci = {
-      source = "CiscoDevNet/aci"
+      source  = "CiscoDevNet/aci"
       version = "0.5.4"
     }
   }
@@ -14,19 +14,21 @@ provider "aci" {
   # cisco-aci user name
   username = "admin"
   # cisco-aci password
-  password = "password"
+  password = "ciscopsdt"
   # cisco-aci url
-  url      = "https://my-cisco-aci.com"
+  url      = "https://sandboxapicdc.cisco.com"
   insecure = true
 }
-
+#create the Tenant 
 resource "aci_tenant" "test-tenant" {
-  name        = "test-tenant"
-  description = "This tenant was reated by terraform"
+  name        = "TerraTenant"
+  description = "This tenant was created by terraform"
 }
-
+#create the Application Profile 
 resource "aci_application_profile" "test-app" {
-  tanent_dn   = "${aci_tenant.test-tenant.id}"
+  tenant_dn   = aci_tenant.test-tenant.id
   name        = "test-app"
   description = "This app profile is created by terraform"
 }
+
+

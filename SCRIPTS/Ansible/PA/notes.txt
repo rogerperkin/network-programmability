@@ -1,0 +1,31 @@
+# How to get started with Palo Alto and Ansible 
+
+#Python modules on host 
+pan-python
+pandevice  pip3 install pandevice==0.13
+
+# Get ip from PA via CLI 
+show system info
+
+# Get API key from firewall 
+curl -k -X POST 'https://192.168.1.123/api/?type=keygen&user=admin&password=Cisco123'
+
+SSH - RSA key issue
+
+Ansible module reference: https://paloaltonetworks.github.io/pan-os-ansible/modules.html
+Examples Ansible playbooks: https://github.com/PaloAltoNetworks/ansible-playbooks
+
+Docs for bootstrapping with VM-Series: 
+https://docs.paloaltonetworks.com/vm-series/10-1/vm-series-deployment/bootstrap-the-vm-series-firewall.html
+for hardware too: 
+https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/firewall-administration/bootstrap-the-firewall.html
+
+Set management IP on PA 
+configure
+set deviceconfig system type static
+set deviceconfig system ip-address 192.168.1.210 netmask 255.255.255.0 default-gateway 192.168.1.254 dns-setting servers primary 8.8.8.8
+
+#Wipe Firewall 
+request system private-data-reset
+
+Default IP on PA is 192.168.1.1 - need to change 

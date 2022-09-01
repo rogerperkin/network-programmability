@@ -1,0 +1,13 @@
+# Host Vars for Palo Alto-2 Lab Firewall 
+---
+
+hostname: 'PA-2'
+ip:
+  ethernet1: '10.1.2.1/24'
+
+bgp:
+  
+
+
+
+  

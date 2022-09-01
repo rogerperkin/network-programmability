@@ -1,0 +1,28 @@
+# Guide to setup Fortigate VM and make ready for Ansible / API access 
+
+Download VM from https://support.fortinet.com/welcome/#/
+
+Default login is admin (no password)
+Have to create password
+
+Once installed set management IP 
+
+show system interface (to see current interface config)
+
+config system interface 
+edit port1
+set ip 192.168 (or whatever) mask 
+set allowaccess https fgfm (for gui access)
+end
+
+Issues with Admnin access - https://kb.fortinet.com/kb/documentLink.do?externalID=FD34688
+
+
+#API Stuff 
+
+Backup config using Python / API - https://www.youtube.com/watch?v=NfHcUI85-MA
+
+
+
+
+

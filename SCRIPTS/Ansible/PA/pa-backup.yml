@@ -1,0 +1,67 @@
+---
+# This playbook will connect to every device in the hosts file and take a backup
+# just pulls the XML data
+# It will then  extract the running config from each devices and save them locally in ./config/
+# It also pulls the API key 
+
+# Author Roger Perkin 
+# Refactored after Code Review 6/12/21
+
+- hosts: localhost
+
+  tasks:
+
+    - name: Get ansible date/time facts
+      setup:
+        filter: "ansible_date_time"
+        gather_subset: "!all"
+
+    - name: Store DTG as fact
+      set_fact:
+        DTG: "{{ ansible_date_time.date }}"
+
+    - name: Create Directory {{hostvars.localhost.DTG}}
+      file:
+       path: ./{{configs_dir}}/{{hostvars.localhost.DTG}}
+       state: directory
+
+- name: Pull Configuration from Palo Alto Firewalls
+  hosts: allpalo
+
+  tasks:
+
+    - name: Generate API Key
+      connection: local
+      check_mode: no
+      uri:
+        validate_certs: no
+        url: 'https://{{ansible_host}}/api/?type=keygen&user={{ansible_ssh_user}}&password={{ansible_ssh_pass}}'
+        return_content: yes
+        method: GET
+      register: key_string
+
+    - name: Extract API Key from XML Output
+      connection: local
+      xml:
+        xmlstring: '{{key_string.content}}'
+        content: 'text'
+        xpath: '/response/result/key'
+      register: key_list
+
+    - name: Backup configuration from PAN Equipment
+      connection: local
+      check_mode: no
+      uri:
+        validate_certs: no
+        url: "https://{{ansible_host}}/api/?type=config&action=show&key={{key_list.matches[0].key}}"
+        return_content: yes
+        method: GET
+      register: configuration_string
+  
+    - name: Remove XML Header and Save file in {{configs_dir}}
+      connection: local
+      check_mode: no
+      copy:
+        content: "{{configuration_string['content']  | regex_replace('<response.*<result>') | regex_replace('</result></response>')}}"
+        dest: '{{configs_dir}}{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.xml'
+ 

@@ -1,0 +1,24 @@
+--- ospf1/ospf_ios_CSR-2_ops.txt
++++ ospf2/ospf_ios_CSR-2_ops.txt
+ info:
+  vrf:
+   default:
+    address_family:
+     ipv4:
+      instance:
+       100:
+        areas:
+         0.0.0.0:
+          interfaces:
+           GigabitEthernet1:
+-           neighbors:
+-            10.0.0.1:
+-             address: 10.0.0.1
+-             bdr_ip_addr: 10.0.0.1
+-             dead_timer: 00:00:33
+-             dr_ip_addr: 10.0.0.2
+-             neighbor_router_id: 10.0.0.1
+-             state: full
+-             statistics:
+-              nbr_event_count: 6
+-              nbr_retrans_qlen: 0

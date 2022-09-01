@@ -1,0 +1,20 @@
+---
+
+- name: Palo Alto Playbook
+  hosts: palo
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks: 
+
+  - name: Configure and enable BGP
+    panos_bgp:
+      provider: '{{ palo_provider }}'
+      router_id: '1.1.1.1'
+      local_as: '64512'
+
+  - name: Commit 
+    panos_commit_firewall:
+      provider: '{{ palo_provider }}'

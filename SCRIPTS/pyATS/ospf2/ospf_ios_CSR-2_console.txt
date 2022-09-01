@@ -1,0 +1,248 @@
++++ CSR-2 with alias 'cli': executing command 'show ip ospf' +++
+show ip ospf
+ Routing Process "ospf 100" with ID 192.168.1.221
+ Start time: 00:03:13.121, Time elapsed: 01:33:41.040
+ Supports only single TOS(TOS0) routes
+ Supports opaque LSA
+ Supports Link-local Signaling (LLS)
+ Supports area transit capability
+ Supports NSSA (compatible with RFC 3101)
+ Supports Database Exchange Summary List Optimization (RFC 5243)
+ Event-log enabled, Maximum number of events: 1000, Mode: cyclic
+ Router is not originating router-LSAs with maximum metric
+ Initial SPF schedule delay 50 msecs
+ Minimum hold time between two consecutive SPFs 200 msecs
+ Maximum wait time between two consecutive SPFs 5000 msecs
+ Incremental-SPF disabled
+ Initial LSA throttle delay 50 msecs
+ Minimum hold time for LSA throttle 200 msecs
+ Maximum wait time for LSA throttle 5000 msecs
+ Minimum LSA arrival 100 msecs
+ LSA group pacing timer 240 secs
+ Interface flood pacing timer 33 msecs
+ Retransmission pacing timer 66 msecs
+ EXCHANGE/LOADING adjacency limit: initial 300, process maximum 300
+ Number of external LSA 0. Checksum Sum 0x000000
+ Number of opaque AS LSA 0. Checksum Sum 0x000000
+ Number of DCbitless external and opaque AS LSA 0
+ Number of DoNotAge external and opaque AS LSA 0
+ Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+ Number of areas transit capable is 0
+ External flood list length 0
+ IETF NSF helper support enabled
+ Cisco NSF helper support enabled
+ Reference bandwidth unit is 100 mbps
+    Area BACKBONE(0) (Inactive)
+        Number of interfaces in this area is 1
+	Area has no authentication
+	SPF algorithm last executed 00:00:02.155 ago
+	SPF algorithm executed 7 times
+	Area ranges are
+	Number of LSA 2. Checksum Sum 0x011E71
+	Number of opaque link LSA 0. Checksum Sum 0x000000
+	Number of DCbitless LSA 0
+	Number of indication LSA 0
+	Number of DoNotAge LSA 0
+	Flood list length 0
+
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip protocols' +++
+show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.1.221
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Routing on Interfaces Configured Explicitly (Area 0):
+    GigabitEthernet1
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show running-config | section router ospf 100' +++
+show running-config | section router ospf 100
+router ospf 100
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf mpls ldp interface' +++
+show ip ospf mpls ldp interface
+GigabitEthernet1
+  Process ID 100, Area 0
+  LDP is not configured through LDP autoconfig
+  LDP-IGP Synchronization : Not required
+  Holddown timer is disabled
+  Interface is up 
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf mpls traffic-eng link' +++
+show ip ospf mpls traffic-eng link
+
+            OSPF Router with ID (192.168.1.221) (Process ID 100)
+
+  Area 0 MPLS TE not initialized
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show running-config | section router ospf 100' +++
+show running-config | section router ospf 100
+router ospf 100
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf database router' +++
+show ip ospf database router
+
+            OSPF Router with ID (192.168.1.221) (Process ID 100)
+
+		Router Link States (Area 0)
+
+  Adv Router is not-reachable in topology Base with MTID 0
+  LS age: 1471
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 10.0.0.1
+  Advertising Router: 10.0.0.1
+  LS Seq Number: 8000000A
+  Checksum: 0xC339
+  Length: 36
+  Number of Links: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 10.0.0.2
+     (Link Data) Router Interface address: 10.0.0.1
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+
+  LS age: 3
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 192.168.1.221
+  Advertising Router: 192.168.1.221
+  LS Seq Number: 80000008
+  Checksum: 0x5B38
+  Length: 36
+  Number of Links: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.0.0.0
+     (Link Data) Network Mask: 255.255.255.252
+      Number of MTID metrics: 0
+       TOS 0 Metrics: 1
+
+
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf database network' +++
+show ip ospf database network
+
+            OSPF Router with ID (192.168.1.221) (Process ID 100)
+
+		Net Link States (Area 0)
+
+  Delete flag is set for this LSA
+  LS age: MAXAGE(3603)
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 10.0.0.2 (address of Designated Router)
+  Advertising Router: 192.168.1.221
+  LS Seq Number: 80000003
+  Checksum: 0x672C
+  Length: 32
+  Network Mask: /30
+	Attached Router: 192.168.1.221
+	Attached Router: 10.0.0.1
+
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf database external' +++
+show ip ospf database external
+
+            OSPF Router with ID (192.168.1.221) (Process ID 100)
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf database summary' +++
+show ip ospf database summary
+
+            OSPF Router with ID (192.168.1.221) (Process ID 100)
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf database opaque-area' +++
+show ip ospf database opaque-area
+
+            OSPF Router with ID (192.168.1.221) (Process ID 100)
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf virtual-links' +++
+show ip ospf virtual-links
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf interface' +++
+show ip ospf interface
+GigabitEthernet1 is up, line protocol is up 
+  Internet Address 10.0.0.2/30, Interface ID 7, Area 0
+  Attached via Interface Enable
+  Process ID 100, Router ID 192.168.1.221, Network Type BROADCAST, Cost: 1
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           1         no          no            Base
+  Enabled by interface config, including secondary ip addresses
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 192.168.1.221, Interface address 10.0.0.2
+  No backup designated router on this network
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:01
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Can be protected by per-prefix Loop-Free FastReroute
+  Can be used for per-prefix Loop-Free FastReroute repair paths
+  Not Protected by per-prefix TI-LFA
+  Index 1/1/1, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 0, maximum is 2
+  Last flood scan time is 0 msec, maximum is 0 msec
+  Neighbor Count is 0, Adjacent neighbor count is 0 
+  Suppress hello for 0 neighbor(s)
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show running-config | section router ospf 100' +++
+show running-config | section router ospf 100
+router ospf 100
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf neighbor detail' +++
+show ip ospf neighbor detail
+CSR-2#
++++ CSR-2 with alias 'cli': executing command 'show ip ospf sham-links' +++
+show ip ospf sham-links
+CSR-2#
+f neighbor detail
+Parser Output is empty
+Could not learn <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfShamLinks'>
+Show Command: show ip ospf sham-links
+Parser Output is empty
++====================================================================================================================================================+
+| Commands for learning feature 'Ospf'                                                                                                               |
++====================================================================================================================================================+
+| - Parsed commands                                                                                                                                  |
+|----------------------------------------------------------------------------------------------------------------------------------------------------|
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspf'>                                                                                        |
+|   cmd: <class 'genie.libs.parser.iosxe.show_protocols.ShowIpProtocols'>, arguments: {'vrf':''}                                                     |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfMplsLdpInterface'>, arguments: {'interface':''}                                           |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfMplsTrafficEngLink'>                                                                      |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfDatabaseRouter'>                                                                          |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfDatabaseNetwork'>                                                                         |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfDatabaseExternal'>                                                                        |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfDatabaseSummary'>                                                                         |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfDatabaseOpaqueArea'>                                                                      |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfInterface'>, arguments: {'interface':''}                                                  |
+|====================================================================================================================================================|
+| - Commands with empty output                                                                                                                       |
+|----------------------------------------------------------------------------------------------------------------------------------------------------|
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfVirtualLinks'>                                                                            |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfNeighborDetail'>, arguments: {'neighbor':''}                                              |
+|   cmd: <class 'genie.libs.parser.ios.show_ospf.ShowIpOspfShamLinks'>                                                                               |
+|====================================================================================================================================================|

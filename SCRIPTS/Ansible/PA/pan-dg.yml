@@ -1,0 +1,19 @@
+---
+
+- name: Create Template Panorama
+  hosts: panorama
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks: 
+
+    - name: Create Device Group 
+      panos_device_group:
+        provider: '{{ palo_provider }}'
+        name: 'Ansible Device Group'
+        
+    - name: Commit 
+      panos_commit_firewall:
+        provider: '{{ palo_provider }}'

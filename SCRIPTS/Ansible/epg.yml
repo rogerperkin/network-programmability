@@ -1,0 +1,40 @@
+---
+- name:  ACI Sandbox tasks
+  hosts: ACI_Sandbox
+  connection: local
+
+  tasks:
+
+   - name: Create a New Tenant 
+     cisco.aci.aci_tenant:
+       host: sandboxapicdc.cisco.com
+       username: admin
+       password: ciscopsdt
+       tenant: customer-xyz
+       description: Customer XYZ - Ansible
+       state: present
+     delegate_to: localhost
+
+   - name: Query all tenants
+     cisco.aci.aci_tenant:
+       host: sandboxapicdc.cisco.com
+       username: admin
+       password: ciscopsdt
+       state: query
+     delegate_to: localhost
+     register: query_result
+
+   - name: Add EPG
+     aci_epg:
+       host: sandboxapicdc.cisco.com
+       username: admin
+       password: ciscopsdt
+       tenant: customer-xyz
+       ap: web-site
+       epg: web-tier
+       description: created_by_ansible
+       state: present
+       bd: bd-1
+       validate_certs: false
+     delegate_to: localhost
+

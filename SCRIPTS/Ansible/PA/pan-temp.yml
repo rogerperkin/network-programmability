@@ -1,0 +1,17 @@
+---
+
+- name: Create Template Panorama
+  hosts: panorama
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks: 
+
+    - name: Create Template Test
+      panos_template:
+        provider: '{{ palo_provider }}'
+        name: 'hello world'
+        description: 'test for Ansible '
+

@@ -1,0 +1,84 @@
+# Pre Provision Playbook to get base config on a Palo Alto Firewall 
+---
+
+- name: Palo Alto Playbook
+  hosts: palo
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks: 
+
+    - name: Set Hostname 
+      panos_mgtconfig: 
+        provider: '{{ palo_provider }}'
+        hostname: '{{ hostname }}'
+
+    - name: Set DNS and Panorama
+      panos_mgtconfig: 
+        provider: '{{ palo_provider }}'
+        dns_server_primary: '{{ dns_primary_ip }}'
+        dns_server_secondary: '{{ dns_secondary_ip }}'
+        panorama_primary: '{{ panorama_primary_ip }}'
+#        panorama_secondary: '{{ panorama_secondary_ip }}'
+        commit: false
+    
+    - name: Set backup user account 
+      panos_administrator:
+        provider: '{{ palo_provider }}'
+        admin_username: '{{ adminusername }}'
+        admin_password: '{{ adminpassword }}'
+        superuser: true
+        commit: false 
+
+    - name: Set Ethernet1/1 as static in zone Outside
+      panos_interface: 
+        provider: '{{ palo_provider }}'
+        if_name: "ethernet1/1"
+        mode: "layer3"
+        ip: "{{ ip.ethernet1 }}"
+        enable_dhcp: false
+        zone_name: "Outside"
+
+    - name: Create INSIDE Zone
+      panos_zone:
+        provider: '{{ palo_provider}}'
+        zone: 'INSIDE'
+        mode: 'layer3' 
+    
+    - name: Create USERS Zone
+      panos_zone:
+        provider: '{{ palo_provider}}'
+        zone: 'USERS'
+        mode: 'layer3'
+
+    - name: ethernet1/2 config
+      panos_interface:
+        provider: '{{ palo_provider }}'
+        if_name: 'ethernet1/2'
+        zone_name: 'USERS'
+        mode: 'layer3'
+        enable_dhcp: false
+        ip: ['10.10.10.1/24']
+
+    - name: Create Server Objects
+      panos_address_object:
+        provider: '{{ palo_provider }}'
+        name:  "{{ item['name'] }}"
+        value: "{{ item['ip'] }}"
+        description: "{{ item['description'] }}"
+      loop: "{{ servers }}"
+
+# Enable BGP 
+
+    - name: create DMZ zone on a firewall
+      panos_zone:
+        provider: '{{ palo_provider }}'
+        zone: 'dmz'
+        mode: 'layer3'
+#        zone_profile: 'strict'
+
+    - name: Commit 
+      panos_commit_firewall:
+        provider: '{{ palo_provider }}'

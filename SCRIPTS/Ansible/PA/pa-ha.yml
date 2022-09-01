@@ -1,0 +1,32 @@
+---
+
+- name: Palo Alto Playbook
+  hosts: palo
+  connection: local
+
+  collections:
+    - paloaltonetworks.panos
+
+  tasks: 
+
+    - name: set ports to HA mode
+      panos_interface:
+        provider: '{{ palo_provider }}'
+        if_name: "{{ item }}"
+        mode: "ha"
+        enable_dhcp: false
+        commit: false
+      with_items:
+        - ethernet1/3
+        - ethernet1/4
+
+    - name: Configure Active/Standby HA
+      panos_ha:
+        provider: '{{ palo_provider }}'
+        state: present
+        ha_peer_ip: "192.168.50.1"
+        ha1_ip_address: "192.168.50.2"
+        ha1_netmask: "255.255.255.252"
+        ha1_port: "ethernet1/3"
+        ha2_port: "ethernet1/4"
+        ha_mode: "active-passive"

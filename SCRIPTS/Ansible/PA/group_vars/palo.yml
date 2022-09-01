@@ -1,0 +1,21 @@
+---
+
+configs_dir: ./configs/
+
+palo_provider:
+  api_key: LUFRPT1jRm1nUmJib2NHbmF6a21ReFc3M21aemk0eUE9SkFla3ZuZ3RKNHdnOFl6bkx5TzFJNHdMOFV1Y1Y1YkZPVGF3MEk2NmJldGFVV2dmYmIyV3ZDdGdLRFQ4ay9sZg==
+  ip_address: "{{ ansible_host }}"
+
+adminusername: roger
+adminpassword: palo123
+
+ansible_ssh_user: admin
+ansible_ssh_pass: Cisco123
+
+dns_primary_ip: "8.8.8.8"
+dns_secondary_ip: "2.2.2.2"
+panorama_primary_ip: "192.168.1.212"
+panorama_secondary_ip: "4.4.4.4"
+ntp_server_primary_ip: "5.5.5.5"
+ntp_server_secondary_ip: "6.6.6.6"
+
