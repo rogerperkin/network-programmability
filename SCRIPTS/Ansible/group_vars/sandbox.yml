@@ -1,0 +1,6 @@
+---
+
+ansible_user: "developer"
+ansible_ssh_pass: "C1sco12345"
+ansible_network_os: "cisco.ios.ios"
+#ansible_connection: "network_cli"

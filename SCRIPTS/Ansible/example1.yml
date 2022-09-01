@@ -1,0 +1,20 @@
+- hosts: CSR_Routers
+
+  tasks:
+
+   - name: Show IP Int Brief 
+     cisco.ios.ios_command:
+       commands: sh ip int brief  
+     register: config
+
+   - name: View IP 
+     debug: 
+       var: config
+
+   - name: Gather IOS Facts 
+     cisco.ios.ios_facts:
+
+   - name: View Facts
+     debug: 
+       msg: "{{inventory_hostname }}'s Management IP is {{ ansible_net_interfaces['FastEthernet2/0']['ipv4'][0]['address'] }}"
+#       var: ansible_facts

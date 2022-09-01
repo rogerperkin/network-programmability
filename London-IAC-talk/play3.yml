@@ -15,7 +15,7 @@
 
    - name: Create Directory {{hostvars.localhost.DTG}}
      file:
-      path: ~/network-programmability/backups/{{hostvars.localhost.DTG}}
+      path: ~/network-programmability/London-IAC/backups/{{hostvars.localhost.DTG}}
       state: directory
   run_once: true
 
@@ -24,14 +24,14 @@
   tasks:
 
    - name: Backup  
-     cisco.ios.ios_command:
+     ios_command:
        commands: show run  
      register: config
 
-   - name: Save output to ~/network-programmability/backups/
+   - name: Save output to ~/network-programmability/London-IAC/backups/
      copy:
        content: "{{config.stdout[0]}}"
-       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+       dest: "~/network-programmability/London-IAC/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
        
 - hosts: CSR_Routers 
 
@@ -48,7 +48,7 @@
       - show version 
     # - show license usage 
     # - show clock
-    # - show users
+      - show users
     # - show boot
     # - show int status | inc connected
     # - show arp
@@ -63,30 +63,5 @@
    - name: "Put all the files together into one nice text file"
      template: 
        src: template.j2 
-       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-showoutput.txt"
-
-- hosts: SWITCHES
-
-  tasks:
-   - name: Backup Catalyst Switch 
-
-     ios_config:
-       backup: yes
-       backup_options:
-         filename: "{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-         dir_path: /home/roger/network-programmability/backups/{{hostvars.localhost.DTG}}
-
-- hosts: NXOS
-
-  tasks:
-   - name: Backup NEXUS with cli_command
-     cli_command:
-       command: show run | be ver
-     register: config 
-
-   - name: Save output to ~/network-programmability/backups/
-     copy:
-       content: "{{config.stdout}}"
-       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-
+       dest: "~/network-programmability/London-IAC/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-showoutput.txt"
 

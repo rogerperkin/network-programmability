@@ -1,5 +1,9 @@
 ## Ansible Hosts File for Lab 
 
+[sandbox]
+#sandbox-iosxe-recomm-1.cisco.com
+sandbox-iosxe-latest-1.cisco.com
+
 [CSR_Routers]
 R1 ansible_host=192.168.1.220
 R2 ansible_host=192.168.1.221

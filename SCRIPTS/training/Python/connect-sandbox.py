@@ -11,8 +11,5 @@ CSR = {
 }
 
 net_connect = ConnectHandler(**CSR)
-output = net_connect.send_command('show version')
+output = net_connect.send_command('sh ip int brief')
 print (output)
-
-# Finally close the connection
-net_connect.disconnect()

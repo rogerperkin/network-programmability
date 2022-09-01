@@ -1,0 +1,11 @@
+var:
+      allNetworkInterfaces: "{{ ansible_facts | dict2items | selectattr('value.ipv4', 'defined') | map(attribute='value') | list }}"
+      allNetworkInterfaces_variant2: "{{ ansible_facts.interfaces | map('extract', ansible_facts ) | list }}"
+      interfaceWithKnownIp: "{{ ansible_facts | dict2items | selectattr('value.ipv4', 'defined') | selectattr('value.ipv4.address', 'equalto', myKnowIpV4) | first }}"
+      interfaceWithKnownIp_fromVar: "{{ allNetworkInterfaces | selectattr('ipv4.address', 'equalto', myKnowIpV4) | first }}"
+      interfacesWithPartialKnowMac: "{{ allNetworkInterfaces | selectattr('macaddress', 'match', knownMacPrefix~'.*') | list }}"
+      interfacesWitKnowType: "{{ allNetworkInterfaces | selectattr('type', 'equalto', knownType) | sort(attribute='device') | list }}"
+      # extended on 2020-10-28
+      queryForKnownIpv6: "[*].{device: device, ipv4: ipv4, ipv6: ipv6[? address == 'fe80::a00:27ff:fe38:ad36']}[?ipv6])" # string must be in ' # sorry, only partial interface info, did not find out how to return all info directly
+      interfacesWithKnownIpv6: '{{ allNetworkInterfaces | json_query(queryForKnownIpv6) | first }}'
+      queryForKnownIpv4_linux: "[?ipv4.address == '{{ myKnownIpV4 }}']}[?ipv4])" # string must be in '

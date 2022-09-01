@@ -1,0 +1,19 @@
+---
+- name: get facts
+  hosts: CSR_Routers
+  
+  gather_facts: false
+
+  tasks:
+    - name: get device facts
+      cisco.ios.ios_facts:
+        gather_subset:
+          - '!hardware'
+
+    - name: display interfaces
+      debug:
+        msg: "The IOS interfaces are: {{ ansible_net_interfaces | to_nice_yaml }}"
+
+    - name: display interfaces
+      debug:
+        msg: "GigabitEthernet0/0 address is: {{ ansible_net_interfaces['GigabitEthernet0/0']['ipv4'][0]['address'] | to_nice_yaml }}"

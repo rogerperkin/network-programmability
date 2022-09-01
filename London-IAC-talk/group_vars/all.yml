@@ -13,9 +13,6 @@ legacy_credentials:
   username: "roger"
   password: "Password$"
 
-source_directory: /home/roger/network-programmability/SCRIPTS/Ansible/
-dest_directory: /home/roger/
-
 
 
 

@@ -1,0 +1,657 @@
+
+Building configuration...
+
+Current configuration : 7182 bytes
+!
+! Last configuration change at 09:35:11 UTC Thu Aug 18 2022 by developer
+!
+version 17.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname csr1000v-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 9 $9$GNcSrWbM1PyCqU$9.BCza34ClqbgyABGzRV1v5hjCWhaoN9K.gqxCtcCvE
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name lab.devnetsandbox.local
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-807034967
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-807034967
+ revocation-check none
+ rsakeypair TP-self-signed-807034967
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+!
+crypto pki certificate chain TP-self-signed-807034967
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 38303730 33343936 37301E17 0D323030 39303131 34353134 
+  385A170D 33303039 30313134 35313438 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3830 37303334 
+  39363730 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 
+  82010100 B2A6EECF B2BAF984 F48D24CB 9979B139 A9C57F7F 29A4037D 6536E191 
+  10546865 82D58D1B B5DF34EE DD1EC4B3 E0634D1C 99B6B135 15DE8774 53E2E43C 
+  969AD39E E898E57C 341FBFDD AE283528 32C517C3 E81458CA 496F9B51 0D3242BF 
+  AECAA459 1954E01A 94D55D6B 5A4EB147 01446BAD 984F0EC5 EC1F0BCD E736BF7A 
+  D2DB9375 420A7B8C D765D9FF 6E444EAA 83804E55 C2CE8D54 A65DA586 BFF1D66F 
+  4B196EB1 B1E22929 F057E19B 7093CA0E 56667DBE B1B5A746 1045CD5A 9C4C8549 
+  3152D4E6 68CFB634 B4DD2845 34160100 D367F8C3 84A7606C 3498440B 4DA9163C 
+  B5C54A31 66411E7B B571D01E AFA6E04F EE9FE2CD 29503E89 EAAD8188 55268697 
+  D976CE79 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 
+  0603551D 23041830 1680144C A132DB18 AC3EA0E0 2768EC0A 90CEE986 AA378430 
+  1D060355 1D0E0416 04144CA1 32DB18AC 3EA0E027 68EC0A90 CEE986AA 3784300D 
+  06092A86 4886F70D 01010505 00038201 01007F50 96E2094F 779B3CAD 6DEFD6AB 
+  C40EFFFB A4608AFF 27C9BEFD B7A3D02A 2E114A81 7A42EAFE D2B155BD C18C6BAC 
+  B4579207 C20E11FB B4CD6227 97659759 064783D1 3D4F77AC E50CDE35 7E33EB3B 
+  8A00CF77 B86B09E7 4AE5B9B2 BADF5B3E DA02A2B9 5DC50F3A FE6C3240 903B9ABF 
+  110260C1 424B1BE3 D8D6C45A 9AE8C499 3637969E 2230D292 04B84915 FF500092 
+  66DC0C1D 6A034A64 065CD635 73193D40 5C051E90 277C4445 C794EDFA B9A5B783 
+  79F22F04 DCD7C240 0FDEF168 D9F6706B 6B24E6ED C8D6F1BE E8EACA1E 29693E20 
+  CB84D6EC 505A2F00 89C820AD 86963CE5 009B93E1 19E3D732 3206BE52 923E2059 
+  E18D057C 7677C230 8994B4E5 CE2B1FD8 88B5
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+license udi pid CSR1000V sn 9ESGOBARV9D
+license boot level ax
+diagnostic bootup level minimal
+memory free low-watermark processor 71556
+!
+!
+spanning-tree extend system-id
+!
+username developer privilege 15 secret 9 $9$oNguEA9um9vRx.$MsDk0DOy1rzBjKAcySWdNjoKcA7GetG9YNnKOs8S67A
+username root privilege 15 secret 9 $9$IRHgr7MCAEFNLk$ZfOrXoRLFhh6gHIxhLPfOC9KzjIWISv4KqkNAR51kmI
+username test privilege 15 secret 9 $14$lT7V$8e5SkVU17hlIHU$ePK5PQJqb5/OrnBkRZ4aU/qHiWmWnKhubmN/NJl9YpE
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback1000
+ description created vi expect script
+ no ip address
+!
+interface GigabitEthernet1
+ description MANAGEMENT INTERFACE - DON'T TOUCH ME
+ ip address 10.10.20.48 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Network Interface
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Network Interface
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router ospf 19
+ router-id 33.44.88.22
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 10.10.20.254
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip scp server enable
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner motd ^C
+Welcome to the DevNet Sandbox for CSR1000v and IOS XE
+ 
+The following programmability features are already enabled:
+  - NETCONF
+  - RESTCONF
+ 
+Thanks for stopping by.
+^C
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!
+!
+!
+!
+telemetry ietf subscription 1
+ encoding encode-kvgpb
+ filter xpath /interface-ios-xe-oper:interfaces/interface[name=\"GigabitEthernet2\"]statistics
+ source-address 1.2.1.2
+ stream yang-push
+ update-policy periodic 9
+ receiver ip address 10.12.1.2 57000 protocol grpc-tcp
+netconf-yang
+restconf
+end
+
+Cisco IOS XE Software, Version 17.03.01a
+Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.1a, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2020 by Cisco Systems, Inc.
+Compiled Wed 12-Aug-20 00:16 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2020 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+csr1000v-1 uptime is 17 hours, 47 minutes
+Uptime for this control processor is 17 hours, 49 minutes
+System returned to ROM by reload
+System image file is "bootflash:packages.conf"
+Last reload reason: reload
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: N/A(Smart License Enabled)
+Next reload license Level: ax
+
+The current throughput level is 1000 kbps 
+
+
+Smart Licensing Status: UNREGISTERED/No Licenses in Use
+
+cisco CSR1000V (VXE) processor (revision VXE) with 715705K/3075K bytes of memory.
+Processor board ID 9ESGOBARV9D
+Router operating mode: Autonomous
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+3978420K bytes of physical memory.
+6188032K bytes of virtual hard disk at bootflash:.
+
+Configuration register is 0x2102
+
+Building configuration...
+
+Current configuration : 7182 bytes
+!
+! Last configuration change at 10:05:10 UTC Thu Aug 18 2022 by developer
+!
+version 17.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname csr1000v-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 9 $9$GNcSrWbM1PyCqU$9.BCza34ClqbgyABGzRV1v5hjCWhaoN9K.gqxCtcCvE
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name lab.devnetsandbox.local
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-807034967
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-807034967
+ revocation-check none
+ rsakeypair TP-self-signed-807034967
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+!
+crypto pki certificate chain TP-self-signed-807034967
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 38303730 33343936 37301E17 0D323030 39303131 34353134 
+  385A170D 33303039 30313134 35313438 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3830 37303334 
+  39363730 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 
+  82010100 B2A6EECF B2BAF984 F48D24CB 9979B139 A9C57F7F 29A4037D 6536E191 
+  10546865 82D58D1B B5DF34EE DD1EC4B3 E0634D1C 99B6B135 15DE8774 53E2E43C 
+  969AD39E E898E57C 341FBFDD AE283528 32C517C3 E81458CA 496F9B51 0D3242BF 
+  AECAA459 1954E01A 94D55D6B 5A4EB147 01446BAD 984F0EC5 EC1F0BCD E736BF7A 
+  D2DB9375 420A7B8C D765D9FF 6E444EAA 83804E55 C2CE8D54 A65DA586 BFF1D66F 
+  4B196EB1 B1E22929 F057E19B 7093CA0E 56667DBE B1B5A746 1045CD5A 9C4C8549 
+  3152D4E6 68CFB634 B4DD2845 34160100 D367F8C3 84A7606C 3498440B 4DA9163C 
+  B5C54A31 66411E7B B571D01E AFA6E04F EE9FE2CD 29503E89 EAAD8188 55268697 
+  D976CE79 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 
+  0603551D 23041830 1680144C A132DB18 AC3EA0E0 2768EC0A 90CEE986 AA378430 
+  1D060355 1D0E0416 04144CA1 32DB18AC 3EA0E027 68EC0A90 CEE986AA 3784300D 
+  06092A86 4886F70D 01010505 00038201 01007F50 96E2094F 779B3CAD 6DEFD6AB 
+  C40EFFFB A4608AFF 27C9BEFD B7A3D02A 2E114A81 7A42EAFE D2B155BD C18C6BAC 
+  B4579207 C20E11FB B4CD6227 97659759 064783D1 3D4F77AC E50CDE35 7E33EB3B 
+  8A00CF77 B86B09E7 4AE5B9B2 BADF5B3E DA02A2B9 5DC50F3A FE6C3240 903B9ABF 
+  110260C1 424B1BE3 D8D6C45A 9AE8C499 3637969E 2230D292 04B84915 FF500092 
+  66DC0C1D 6A034A64 065CD635 73193D40 5C051E90 277C4445 C794EDFA B9A5B783 
+  79F22F04 DCD7C240 0FDEF168 D9F6706B 6B24E6ED C8D6F1BE E8EACA1E 29693E20 
+  CB84D6EC 505A2F00 89C820AD 86963CE5 009B93E1 19E3D732 3206BE52 923E2059 
+  E18D057C 7677C230 8994B4E5 CE2B1FD8 88B5
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+license udi pid CSR1000V sn 9ESGOBARV9D
+license boot level ax
+diagnostic bootup level minimal
+memory free low-watermark processor 71556
+!
+!
+spanning-tree extend system-id
+!
+username developer privilege 15 secret 9 $9$oNguEA9um9vRx.$MsDk0DOy1rzBjKAcySWdNjoKcA7GetG9YNnKOs8S67A
+username root privilege 15 secret 9 $9$IRHgr7MCAEFNLk$ZfOrXoRLFhh6gHIxhLPfOC9KzjIWISv4KqkNAR51kmI
+username test privilege 15 secret 9 $14$lT7V$8e5SkVU17hlIHU$ePK5PQJqb5/OrnBkRZ4aU/qHiWmWnKhubmN/NJl9YpE
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback1000
+ description created vi expect script
+ no ip address
+!
+interface GigabitEthernet1
+ description MANAGEMENT INTERFACE - DON'T TOUCH ME
+ ip address 10.10.20.48 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Network Interface
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Network Interface
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router ospf 19
+ router-id 33.44.88.22
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 10.10.20.254
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip scp server enable
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner motd ^C
+Welcome to the DevNet Sandbox for CSR1000v and IOS XE
+ 
+The following programmability features are already enabled:
+  - NETCONF
+  - RESTCONF
+ 
+Thanks for stopping by.
+^C
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!
+!
+!
+!
+telemetry ietf subscription 1
+ encoding encode-kvgpb
+ filter xpath /interface-ios-xe-oper:interfaces/interface[name=\"GigabitEthernet2\"]statistics
+ source-address 1.2.1.2
+ stream yang-push
+ update-policy periodic 9
+ receiver ip address 10.12.1.2 57000 protocol grpc-tcp
+netconf-yang
+restconf
+end
+
+Cisco IOS XE Software, Version 17.03.01a
+Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.1a, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2020 by Cisco Systems, Inc.
+Compiled Wed 12-Aug-20 00:16 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2020 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+csr1000v-1 uptime is 17 hours, 49 minutes
+Uptime for this control processor is 17 hours, 50 minutes
+System returned to ROM by reload
+System image file is "bootflash:packages.conf"
+Last reload reason: reload
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: N/A(Smart License Enabled)
+Next reload license Level: ax
+
+The current throughput level is 1000 kbps 
+
+
+Smart Licensing Status: UNREGISTERED/No Licenses in Use
+
+cisco CSR1000V (VXE) processor (revision VXE) with 715705K/3075K bytes of memory.
+Processor board ID 9ESGOBARV9D
+Router operating mode: Autonomous
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+3978420K bytes of physical memory.
+6188032K bytes of virtual hard disk at bootflash:.
+
+Configuration register is 0x2102
+
