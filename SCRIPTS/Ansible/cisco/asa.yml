@@ -3,9 +3,18 @@
 - hosts: ASAv
 
   collections:
-    - cisco.asa
+  - cisco.asa
 
   tasks:
+
+  - name: configure some network object hosts 
+    become: yes
+    cisco.asa.asa_config: 
+      lines:
+        - network-object host 10.80.30.1 
+        - network-object host 10.8.20.18 
+      parents: [object-group network Ansible-Test-Group]
+
   - name: save running to startup when modified
     become: yes
     cisco.asa.asa_config:
