@@ -1,0 +1,11 @@
+---
+# Default Login details 
+
+ansible_user: "roger"
+ansible_ssh_pass: "cisco"
+ansible_network_os: "cisco.asa.asa"
+ansible_connection: "ansible.netcommon.network_cli"
+ansible_become: "true"
+ansible_become_pass: cisco
+
+

@@ -1,0 +1,12 @@
+---
+
+- hosts: ASAv
+
+  collections:
+    - cisco.asa
+
+  tasks:
+  - name: save running to startup when modified
+    become: yes
+    cisco.asa.asa_config:
+      save_when: modified

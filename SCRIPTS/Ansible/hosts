@@ -20,6 +20,7 @@ R12 ansible_host=192.168.1.231
 R13 ansible_host=192.168.1.232
 R14 ansible_host=192.168.1.233
 
+
 [SWITCHES]
 2960 ansible_host=192.168.1.250
 
