@@ -29,3 +29,5 @@ set deviceconfig system ip-address 192.168.1.210 netmask 255.255.255.0 default-g
 request system private-data-reset
 
 Default IP on PA is 192.168.1.1 - need to change 
+
+Default password on virtual device admin/admin
