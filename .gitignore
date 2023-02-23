@@ -10,3 +10,4 @@ SCRIPTS/Ansible/vault-pass.yml
 SCRIPTS/Terraform/ASAv/.terraform/environment
 SCRIPTS/Terraform/ASAv/.terraform/modules/
 *.tar 
+/SCRIPTS/Ansible/tmp/
