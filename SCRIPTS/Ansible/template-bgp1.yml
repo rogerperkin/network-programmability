@@ -1,0 +1,18 @@
+---
+- name: Configure BGP peer on Cisco router
+  hosts: BGP_Routers
+
+  vars:
+    config_file_path: "/home/roger/network-programmability/{{ inventory_hostname }}_bgp-peer.cfg"
+
+  tasks:
+    - name: Generate BGP configuration
+      template:
+        src: templates/bgp-peer.j2
+        dest: "{{ config_file_path }}"
+#      vars: "{{ hostvars[inventory_hostname] }}"
+
+    - name: Save BGP configuration to file
+      copy:
+        src: "{{ config_file_path }}"
+        dest: "/home/roger/network-programmability/SCRIPTS/Ansible/tmp/{{ inventory_hostname }}_bgp_peer.cfg"

@@ -1,0 +1,17 @@
+
+router bgp {{ local_asn }}
+  neighbor {{ peer_ip }} remote-as {{ remote_asn }}
+  neighbor {{ peer_ip }} description "{{ peer_description }}"
+  {% if peer_password -%} 
+  neighbor {{ peer_ip }} password {{ peer_password }}
+  {% endif %}
+{% if peer_update_source -%}neighbor {{ peer_ip }} update-source {{ peer_update_source }}
+  {% endif %}
+{% if peer_route_map_in -%}neighbor {{ peer_ip }} route-map {{ peer_route_map_in }} in
+  {% endif %}
+{% if peer_route_map_out -%}neighbor {{ peer_ip }} route-map {{ peer_route_map_out }} out
+  {% endif %}
+
+
+
+
