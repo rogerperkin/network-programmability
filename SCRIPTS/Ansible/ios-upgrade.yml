@@ -45,7 +45,13 @@
 ## Backup Running Config 
 
 - hosts: SWITCHES 
+  vars: 
+    upgrade_ios_version: 12.2(55)SE12
 
+  tasks:
+    - name: CHECK CURRENT VERSION
+      ios_facts:
+      
   tasks:
    - name: Backup Running Config  
      ios_command:
@@ -71,6 +77,7 @@
        dest: "flash:/c2960-lanbasek9-mz.122-55.SE12.bin"
      vars: 
        ansible_command_timeout: 600
+     when: ansible_net_version != upgrade_ios_version
 
 ## Change the Boot Variable to the new image 
 
@@ -79,6 +86,7 @@
        commands: 
          - "boot system flash:c2960-lanbasek9-mz.122-55.SE12.bin"
        save_when: always 
+     when: ansible_net_version != upgrade_ios_version
 
 ## Reload the device 
 
@@ -89,6 +97,7 @@
          - confirm
        answer: 
          - 'y'
+     when: ansible_net_version != upgrade_ios_version
          
 ## Wait for Reachability to the device 
 
@@ -98,16 +107,19 @@
        port: 22
        delay: 90
      delegate_to: localhost
+     when: ansible_net_version != upgrade_ios_version
 
 ## Check current image 
 
    - name: Check Image Version      
      ios_facts:
-
+     when: ansible_net_version != upgrade_ios_version
+     
    - debug: 
        msg: 
        - "Current version is {{ ansible_net_version }}"
-
+     when: ansible_net_version != upgrade_ios_version
+     
    - name: ASSERT THAT THE IOS VERSION IS CORRECT
    
      vars: 
@@ -116,6 +128,8 @@
      assert:
        that:
          - upgrade_ios_version == ansible_net_version
+     when: ansible_net_version != upgrade_ios_version
+     
    - debug: 
        msg: 
        - "Software Upgrade has been completed"
